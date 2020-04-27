@@ -1,13 +1,25 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
+import NoMatch from "./routing/NoMatch";
+import LoginPage from "./components/login/LoginPage";
 
 const App = () => {
     return (
-        <div className="App">
-            Recepty
-            <p>
-                Api URL: {process.env.REACT_APP_API_URL}
-            </p>
-        </div>
+        <Router>
+            <Switch>
+                <Route path="/login">
+                    <LoginPage/>
+                </Route>
+                <Route path="*">
+                    <NoMatch/>
+                </Route>
+            </Switch>
+        </Router>
     );
 }
 
