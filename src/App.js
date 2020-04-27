@@ -6,7 +6,9 @@ import {
     Link
 } from "react-router-dom";
 import NoMatch from "./routing/NoMatch";
+import PrivateRoute from "./routing/PrivateRoute";
 import LoginPage from "./components/login/LoginPage";
+import HomePage from "./components/home/HomePage";
 
 const App = () => {
     return (
@@ -15,6 +17,9 @@ const App = () => {
                 <Route path="/login">
                     <LoginPage/>
                 </Route>
+                <PrivateRoute path="/">
+                    <HomePage/>
+                </PrivateRoute>
                 <Route path="*">
                     <NoMatch/>
                 </Route>
