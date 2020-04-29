@@ -5,11 +5,10 @@ import {Route, Redirect} from "react-router-dom";
 // screen if you're not yet authenticated.
 const PrivateRoute = ({children, ...rest}) => {
     return (
-        // Todo: handle auth!
         <Route
             {...rest}
             render={({location}) =>
-                true ? (
+                sessionStorage.getItem("token") ? (
                     children
                 ) : (
                     <Redirect
