@@ -5,13 +5,15 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import "./LoginPage.css";
 
 const LoginPage = () => {
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs"
+                   className="login-form">
 
-            <Typography component="h1" variant="h5">
+            <Typography component="h1" variant="h5" className="login-title">
                 Přihlášení
             </Typography>
 
@@ -21,6 +23,7 @@ const LoginPage = () => {
                     margin="normal"
                     required
                     fullWidth
+                    autoComplete="username"
                     id="username"
                     label="Přihlašovací jméno"
                     name="username"
@@ -37,20 +40,22 @@ const LoginPage = () => {
                     id="password"
                     autoComplete="current-password"/>
 
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    color="primary">
-                    Přihlásit
-                </Button>
+                <Box className="login-spacing-top">
+                    <Button
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        color="primary">
+                        Přihlásit
+                    </Button>
+                </Box>
             </form>
 
             <Grid
                 container
                 direction="row"
                 justify="center"
-                className="register-link"
+                className="login-spacing-top"
                 alignItems="center">
                 <Grid item>
                     <Link href="#" variant="body2">
