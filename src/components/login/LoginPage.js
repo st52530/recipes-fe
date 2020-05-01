@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
+import axios from 'axios';
 
 const createStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -33,9 +34,22 @@ const LoginPage = () => {
     const [password, setPassword] = useState("")
     const [isLoading, setLoading] = useState(false);
 
-    const doOnSubmit = (event) => {
+    const doOnSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
+        try {
+            const response = await axios.post(process.env.REACT_APP_API_URL + '/authorise', {
+                username: username,
+                password: password
+            })
+            console.log("Success")
+            // TODO: Auth.
+        } catch (exception) {
+            // TODO: Error state
+            console.log("Error")
+            console.error(exception)
+        }
+        setLoading(false);
     }
 
     return (
