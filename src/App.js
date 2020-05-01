@@ -24,6 +24,13 @@ const App = () => {
                 main: '#00bcd4'
             }
         },
+        overrides: {
+            MuiButton: {
+                root: {
+                    padding: '0.5rem'
+                }
+            }
+        }
     });
 
     return (
