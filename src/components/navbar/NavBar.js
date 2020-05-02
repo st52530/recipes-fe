@@ -36,10 +36,6 @@ const useStyles = makeStyles(theme => ({
     drawerPaper: {
         width: `100%`
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-    },
     closeMenuButton: {
         marginRight: 'auto',
         marginLeft: 0,
@@ -54,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const NavBar = ({loggedIn, onLogout, history}) => {
+const NavBar = ({location, history}) => {
     const navigationItems = [
         {
             name: "Vyhledávání",
@@ -82,7 +78,7 @@ const NavBar = ({loggedIn, onLogout, history}) => {
         setMobileOpen(!mobileOpen)
     }
 
-    if (!loggedIn) {
+    if (location.pathname === '/login') {
         return null
     }
 
@@ -132,7 +128,7 @@ const NavBar = ({loggedIn, onLogout, history}) => {
                     <div className={classes.navigationMargin}>
                         {/*    Empty div to push navigation right. */}
                     </div>
-                    <Hidden xsDown implementation="css">
+                    <Hidden xsDown>
                         <nav>
                             {desktop}
                         </nav>
@@ -140,7 +136,7 @@ const NavBar = ({loggedIn, onLogout, history}) => {
                 </Toolbar>
             </AppBar>
 
-            <Hidden smUp implementation="css">
+            <Hidden smUp>
                 <nav>
                     {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                     <Drawer

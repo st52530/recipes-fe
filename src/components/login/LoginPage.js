@@ -53,12 +53,11 @@ const LoginPage = ({onSuccess}) => {
                 password: password
             })
             sessionStorage.setItem("token", response.data.token)
-            onSuccess(true)
         } catch (exception) {
             console.error(exception)
             setError("Špatné jméno nebo heslo.")
-            setLoading(false);
         }
+        setLoading(false);
     }
 
     return (
