@@ -89,7 +89,10 @@ const NavBar = ({location, history}) => {
         <div>
             <List>
                 {navigationItems.map((item, index) => (
-                    <ListItem key={item.name} component={Link} to={item.link} onClick={handleDrawerToggle}>
+                    <ListItem button key={item.name} onClick={() => {
+                        handleDrawerToggle()
+                        history.push(item.link)
+                    }}>
                         <ListItemText primary={item.name}/>
                     </ListItem>
                 ))}
