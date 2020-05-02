@@ -48,11 +48,10 @@ const LoginPage = () => {
         setError(null)
 
         try {
-            const response = await axios.post(process.env.REACT_APP_API_URL + '/authenticate', {
+            const response = await axios.post(process.env.REACT_APP_API_URL + 'authenticate', {
                 username: username,
                 password: password
             })
-            console.log(response)
             sessionStorage.setItem("token", response.data.token)
         } catch (exception) {
             console.error(exception)
