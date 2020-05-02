@@ -30,16 +30,16 @@ const createStyles = makeStyles((theme) => ({
 }));
 
 const LoginPage = () => {
-    if (sessionStorage.getItem("token")) {
-        // When logged in - show home.
-        return <Redirect to="/"/>
-    }
-
     const styles = createStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    if (sessionStorage.getItem("token")) {
+        // When logged in - show home.
+        return <Redirect to="/"/>
+    }
 
     const doOnSubmit = async (event) => {
         // Render state correctly.
