@@ -8,6 +8,7 @@ import NoMatch from "./routing/NoMatch";
 import PrivateRoute from "./routing/PrivateRoute";
 import LoginPage from "./components/login/LoginPage";
 import HomePage from "./components/home/HomePage";
+import Logout from "./components/logout/Logout";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
@@ -41,6 +42,9 @@ const App = () => {
                     <Route path="/login">
                         <LoginPage/>
                     </Route>
+                    <PrivateRoute path="/logout">
+                        <Logout/>
+                    </PrivateRoute>
                     <PrivateRoute path="/">
                         <HomePage/>
                     </PrivateRoute>

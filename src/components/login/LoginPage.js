@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
@@ -33,23 +34,27 @@ const LoginPage = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const doOnSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
         try {
-            const response = await axios.post(process.env.REACT_APP_API_URL + '/authorise', {
+            const response = await axios.post(process.env.REACT_APP_API_URL + '/authenticate', {
                 username: username,
                 password: password
             })
-            console.log("Success")
-            // TODO: Auth.
+            console.log(response)
+            sessionStorage.setItem("token", response.data.token)
         } catch (exception) {
-            // TODO: Error state
-            console.log("Error")
             console.error(exception)
+            setError("Špatné jméno nebo heslo.")
         }
         setLoading(false);
+    }
+
+    if (sessionStorage.getItem("token")) {
+        return <Redirect to="/"/>
     }
 
     return (
