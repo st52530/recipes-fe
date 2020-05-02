@@ -11,6 +11,7 @@ import HomePage from "./components/home/HomePage";
 import Logout from "./components/logout/Logout";
 import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
 const App = () => {
@@ -44,21 +45,25 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <Router>
                 <CssBaseline/>
-                <NavBar loggedIn={loggedIn}/>
-                <Switch>
-                    <Route path="/login">
-                        <LoginPage onSuccess={setLoggedIn}/>
-                    </Route>
-                    <PrivateRoute path="/logout">
-                        <Logout/>
-                    </PrivateRoute>
-                    <PrivateRoute path="/">
-                        <HomePage/>
-                    </PrivateRoute>
-                    <Route path="*">
-                        <NoMatch/>
-                    </Route>
-                </Switch>
+
+                <Box display="flex">
+                    <NavBar loggedIn={loggedIn}/>
+
+                    <Switch>
+                        <Route path="/login">
+                            <LoginPage onSuccess={setLoggedIn}/>
+                        </Route>
+                        <PrivateRoute path="/logout">
+                            <Logout/>
+                        </PrivateRoute>
+                        <PrivateRoute path="/">
+                            <HomePage/>
+                        </PrivateRoute>
+                        <Route path="*">
+                            <NoMatch/>
+                        </Route>
+                    </Switch>
+                </Box>
             </Router>
         </ThemeProvider>
     );

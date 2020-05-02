@@ -1,8 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import {Link, withRouter} from "react-router-dom";
 import Drawer from '@material-ui/core/Drawer';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
@@ -12,18 +13,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-const drawerWidth = 240;
+import {makeStyles, useTheme} from '@material-ui/core/styles';
+import {ReactComponent as Logo} from '../../images/logo.svg';
+
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        [theme.breakpoints.up('sm')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-    },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
     },
@@ -33,9 +26,15 @@ const useStyles = makeStyles(theme => ({
             display: 'none',
         },
     },
-    toolbar: theme.mixins.toolbar,
+    logo: {
+        marginRight: theme.spacing(2),
+        display: 'inline-block',
+        [theme.breakpoints.down('xs')]: {
+            display: 'none',
+        },
+    },
     drawerPaper: {
-        width: drawerWidth
+        width: `100%`
     },
     content: {
         flexGrow: 1,
@@ -45,36 +44,73 @@ const useStyles = makeStyles(theme => ({
         marginRight: 'auto',
         marginLeft: 0,
     },
+    titleBox: {
+        '&:hover': {
+            cursor: 'pointer'
+        }
+    },
+    navigationMargin: {
+        flexGrow: 1
+    }
 }));
 
-const NavBar = ({loggedIn}) => {
-    const dummyCategories = ['Hokusai', 'Hiroshige', 'Utamaro', 'Kuniyoshi', 'Yoshitoshi']
+const NavBar = ({loggedIn, onLogout, history}) => {
+    const navigationItems = [
+        {
+            name: "Vyhledávání",
+            link: "/search"
+        },
+        {
+            name: "Seznam receptů",
+            link: "/",
+            mobileOnly: true
+        },
+        {
+            name: "Přidat recept",
+            link: "/add"
+        },
+        {
+            name: "Odhlásit",
+            link: "/logout"
+        }
+    ]
     const classes = useStyles();
     const theme = useTheme();
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    function handleDrawerToggle() {
+    const [mobileOpen, setMobileOpen] = useState(false);
+
+    const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen)
     }
-    const drawer = (
-        <div>
-            <List>
-                {dummyCategories.map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
-        </div>
-    );
 
-    console.log("Navbar logged in: " + loggedIn)
     if (!loggedIn) {
         return null
     }
 
+    const drawer = (
+        <div>
+            <List>
+                {navigationItems.map((item, index) => (
+                    <ListItem key={item.name} button component={Link} to={item.link} onClick={handleDrawerToggle}>
+                        <ListItemText primary={item.name}/>
+                    </ListItem>
+                ))}
+            </List>
+        </div>
+    )
+    const desktop = (
+        <div>
+            <List>
+                {navigationItems.filter((item) => !item.mobileOnly)
+                    .map((item, index) => (
+                        <Button color="inherit" key={item.name} button component={Link}
+                                to={item.link}>{item.name}</Button>
+                    ))}
+            </List>
+        </div>
+    )
+
     return (
-        <div className={classes.root}>
-            <CssBaseline />
+        <>
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
                     <IconButton
@@ -82,19 +118,31 @@ const NavBar = ({loggedIn}) => {
                         aria-label="Open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        className={classes.menuButton}
-                    >
-                        <MenuIcon />
+                        className={classes.menuButton}>
+                        <MenuIcon/>
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Responsive drawer
-                    </Typography>
+                    <Box display="flex" justifyContent="center" onClick={() => history.push("/")}
+                         className={classes.titleBox}>
+                        <Logo className={classes.logo}/>
+
+                        <Typography variant="h6" noWrap>
+                            Rodinné recepty
+                        </Typography>
+                    </Box>
+                    <div className={classes.navigationMargin}>
+                        {/*    Empty div to push navigation right. */}
+                    </div>
+                    <Hidden xsDown implementation="css">
+                        <nav>
+                            {desktop}
+                        </nav>
+                    </Hidden>
                 </Toolbar>
             </AppBar>
 
-            <nav className={classes.drawer}>
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Hidden smUp implementation="css">
+            <Hidden smUp implementation="css">
+                <nav>
+                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
                     <Drawer
                         variant="temporary"
                         anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -105,32 +153,16 @@ const NavBar = ({loggedIn}) => {
                         }}
                         ModalProps={{
                             keepMounted: true, // Better open performance on mobile.
-                        }}
-                    >
+                        }}>
                         <IconButton onClick={handleDrawerToggle} className={classes.closeMenuButton}>
                             <CloseIcon/>
                         </IconButton>
                         {drawer}
                     </Drawer>
-                </Hidden>
-                <Hidden xsDown implementation="css">
-                    <Drawer
-                        className={classes.drawer}
-                        variant="permanent"
-                        classes={{
-                            paper: classes.drawerPaper,
-                        }}
-                    >
-                        <div className={classes.toolbar} />
-                        {drawer}
-                    </Drawer>
-                </Hidden>
-            </nav>
-            <div className={classes.content}>
-                <div className={classes.toolbar} />
-            </div>
-        </div>
+                </nav>
+            </Hidden>
+        </>
     );
 }
 
-export default NavBar
+export default withRouter(NavBar)
