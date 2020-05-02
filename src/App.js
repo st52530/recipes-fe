@@ -1,13 +1,59 @@
 import React from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
+import NoMatch from "./routing/NoMatch";
+import PrivateRoute from "./routing/PrivateRoute";
+import LoginPage from "./components/login/LoginPage";
+import HomePage from "./components/home/HomePage";
+import Logout from "./components/logout/Logout";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
-function App() {
+const App = () => {
+    const theme = createMuiTheme({
+        palette: {
+            primary: {
+                // light: will be calculated from palette.primary.main,
+                main: '#d32f2f',
+                // dark: will be calculated from palette.primary.main,
+                // contrastText: will be calculated to contrast with palette.primary.main
+            },
+            secondary: {
+                main: '#00bcd4'
+            }
+        },
+        overrides: {
+            MuiButton: {
+                root: {
+                    padding: '0.5rem'
+                }
+            }
+        }
+    });
+
     return (
-        <div className="App">
-            Recepty
-            <p>
-                Api URL: {process.env.REACT_APP_API_URL}
-            </p>
-        </div>
+        <ThemeProvider theme={theme}>
+            <Router>
+                <CssBaseline/>
+                <Switch>
+                    <Route path="/login">
+                        <LoginPage/>
+                    </Route>
+                    <PrivateRoute path="/logout">
+                        <Logout/>
+                    </PrivateRoute>
+                    <PrivateRoute path="/">
+                        <HomePage/>
+                    </PrivateRoute>
+                    <Route path="*">
+                        <NoMatch/>
+                    </Route>
+                </Switch>
+            </Router>
+        </ThemeProvider>
     );
 }
 
