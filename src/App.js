@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -36,22 +36,17 @@ const App = () => {
         }
     });
 
-    const [loggedIn, setLoggedIn] = useState(false)
-    useEffect(() => {
-        setLoggedIn(sessionStorage.getItem("token") !== null)
-    }, [])
-
     return (
         <ThemeProvider theme={theme}>
             <Router>
                 <CssBaseline/>
 
                 <Box display="flex">
-                    <NavBar loggedIn={loggedIn}/>
+                    <NavBar/>
 
                     <Switch>
                         <Route path="/login">
-                            <LoginPage onSuccess={setLoggedIn}/>
+                            <LoginPage/>
                         </Route>
                         <PrivateRoute path="/logout">
                             <Logout/>
