@@ -47,6 +47,9 @@ const useStyles = makeStyles(theme => ({
     },
     navigationMargin: {
         flexGrow: 1
+    },
+    navItemMargin: {
+        marginRight: theme.spacing(1.5),
     }
 }));
 
@@ -99,7 +102,7 @@ const NavBar = ({location, history}) => {
                 {navigationItems.filter((item) => !item.mobileOnly)
                     .map((item, index) => (
                         <Button color="inherit" key={item.name} component={Link}
-                                to={item.link}>{item.name}</Button>
+                                to={item.link} className={classes.navItemMargin}>{item.name}</Button>
                     ))}
             </List>
         </div>
