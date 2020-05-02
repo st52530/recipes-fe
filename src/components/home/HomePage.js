@@ -1,11 +1,9 @@
 import React from "react";
-import {Link} from 'react-router-dom';
 
 const HomePage = () => {
     return (
         <div>
             <h1>Home</h1>
-            <Link to="/logout">Logout</Link>
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed rutrum at dui at fermentum. Pellentesque sagittis lacus ut est venenatis consectetur. Praesent viverra dolor faucibus libero venenatis, ac maximus enim fermentum. Etiam et metus et velit feugiat auctor. Nullam condimentum orci vehicula mauris vehicula commodo. Morbi faucibus, erat a finibus commodo, libero justo faucibus purus, at dictum ipsum erat nec massa. Vivamus vulputate condimentum eros blandit fermentum. Mauris lorem dui, lacinia id lacus nec, varius laoreet nulla. Curabitur fringilla est elit, ac sagittis libero dapibus in. Donec viverra vel orci non eleifend. Quisque ac nibh tortor. Etiam faucibus nulla in metus vestibulum euismod. Maecenas mattis eleifend ante, ac hendrerit nisi suscipit ac. Etiam euismod imperdiet metus a accumsan.
             </p>

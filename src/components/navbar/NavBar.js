@@ -86,7 +86,7 @@ const NavBar = ({location, history}) => {
         <div>
             <List>
                 {navigationItems.map((item, index) => (
-                    <ListItem key={item.name} button component={Link} to={item.link} onClick={handleDrawerToggle}>
+                    <ListItem key={item.name} component={Link} to={item.link} onClick={handleDrawerToggle}>
                         <ListItemText primary={item.name}/>
                     </ListItem>
                 ))}
@@ -98,7 +98,7 @@ const NavBar = ({location, history}) => {
             <List>
                 {navigationItems.filter((item) => !item.mobileOnly)
                     .map((item, index) => (
-                        <Button color="inherit" key={item.name} button component={Link}
+                        <Button color="inherit" key={item.name} component={Link}
                                 to={item.link}>{item.name}</Button>
                     ))}
             </List>

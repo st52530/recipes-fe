@@ -12,9 +12,14 @@ import Logout from "./components/logout/Logout";
 import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    toolbarArea: theme.mixins.toolbar
+}));
 
 const App = () => {
+    const classes = useStyles();
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -41,8 +46,10 @@ const App = () => {
             <Router>
                 <CssBaseline/>
 
-                <Box display="flex">
+                <Box>
                     <NavBar/>
+                    {/* Take up toolbar space not to render content under it.*/}
+                    <div className={classes.toolbarArea}/>
 
                     <Switch>
                         <Route path="/login">
