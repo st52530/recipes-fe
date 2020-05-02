@@ -30,6 +30,11 @@ const createStyles = makeStyles((theme) => ({
 }));
 
 const LoginPage = () => {
+    if (sessionStorage.getItem("token")) {
+        // When logged in - show home.
+        return <Redirect to="/"/>
+    }
+
     const styles = createStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -56,13 +61,8 @@ const LoginPage = () => {
         setLoading(false);
     }
 
-    if (sessionStorage.getItem("token")) {
-        return <Redirect to="/"/>
-    }
-
     return (
-        <Container component="main" maxWidth="xs"
-                   className={styles.loginForm}>
+        <Container component="main" maxWidth="xs" className={styles.loginForm}>
 
             <Typography component="h1" variant="h5" className={styles.loginTitle}>
                 Přihlášení
