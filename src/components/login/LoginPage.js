@@ -29,7 +29,7 @@ const createStyles = makeStyles((theme) => ({
     }
 }));
 
-const LoginPage = () => {
+const LoginPage = ({onSuccess}) => {
     const styles = createStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -53,11 +53,12 @@ const LoginPage = () => {
                 password: password
             })
             sessionStorage.setItem("token", response.data.token)
+            onSuccess(true)
         } catch (exception) {
             console.error(exception)
             setError("Špatné jméno nebo heslo.")
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     return (

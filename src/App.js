@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,6 +9,7 @@ import PrivateRoute from "./routing/PrivateRoute";
 import LoginPage from "./components/login/LoginPage";
 import HomePage from "./components/home/HomePage";
 import Logout from "./components/logout/Logout";
+import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
 
@@ -34,13 +35,19 @@ const App = () => {
         }
     });
 
+    const [loggedIn, setLoggedIn] = useState(false)
+    useEffect(() => {
+        setLoggedIn(sessionStorage.getItem("token") !== null)
+    }, [])
+
     return (
         <ThemeProvider theme={theme}>
             <Router>
                 <CssBaseline/>
+                <NavBar loggedIn={loggedIn}/>
                 <Switch>
                     <Route path="/login">
-                        <LoginPage/>
+                        <LoginPage onSuccess={setLoggedIn}/>
                     </Route>
                     <PrivateRoute path="/logout">
                         <Logout/>
