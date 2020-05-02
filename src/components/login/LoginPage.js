@@ -29,7 +29,7 @@ const createStyles = makeStyles((theme) => ({
     }
 }));
 
-const LoginPage = ({onSuccess}) => {
+const LoginPage = () => {
     const styles = createStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
