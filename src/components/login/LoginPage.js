@@ -37,8 +37,11 @@ const LoginPage = () => {
     const [error, setError] = useState(null);
 
     const doOnSubmit = async (event) => {
-        event.preventDefault();
-        setLoading(true);
+        // Render state correctly.
+        event.preventDefault()
+        setLoading(true)
+        setError(null)
+
         try {
             const response = await axios.post(process.env.REACT_APP_API_URL + '/authenticate', {
                 username: username,
@@ -71,12 +74,16 @@ const LoginPage = () => {
                     margin="normal"
                     required
                     fullWidth
+                    error={error !== null}
                     autoComplete="username"
                     id="username"
                     label="Přihlašovací jméno"
                     name="username"
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => {
+                        setError(null)
+                        setUsername(e.target.value)
+                    }}
                     autoFocus/>
 
                 <TextField
@@ -84,12 +91,17 @@ const LoginPage = () => {
                     margin="normal"
                     required
                     fullWidth
+                    error={error !== null}
+                    helperText={error}
                     name="password"
                     label="Heslo"
                     type="password"
                     id="password"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                        setError(null)
+                        setPassword(e.target.value)
+                    }}
                     autoComplete="current-password"/>
 
                 <Box display="flex" justifyContent="center" className={styles.loginSpacingTopHalf}>
