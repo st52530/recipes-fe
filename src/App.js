@@ -9,10 +9,17 @@ import PrivateRoute from "./routing/PrivateRoute";
 import LoginPage from "./components/login/LoginPage";
 import HomePage from "./components/home/HomePage";
 import Logout from "./components/logout/Logout";
+import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
-import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+    toolbarArea: theme.mixins.toolbar
+}));
 
 const App = () => {
+    const classes = useStyles();
     const theme = createMuiTheme({
         palette: {
             primary: {
@@ -38,20 +45,27 @@ const App = () => {
         <ThemeProvider theme={theme}>
             <Router>
                 <CssBaseline/>
-                <Switch>
-                    <Route path="/login">
-                        <LoginPage/>
-                    </Route>
-                    <PrivateRoute path="/logout">
-                        <Logout/>
-                    </PrivateRoute>
-                    <PrivateRoute path="/">
-                        <HomePage/>
-                    </PrivateRoute>
-                    <Route path="*">
-                        <NoMatch/>
-                    </Route>
-                </Switch>
+
+                <Box>
+                    <NavBar/>
+                    {/* Take up toolbar space not to render content under it.*/}
+                    <div className={classes.toolbarArea}/>
+
+                    <Switch>
+                        <Route path="/login">
+                            <LoginPage/>
+                        </Route>
+                        <PrivateRoute path="/logout">
+                            <Logout/>
+                        </PrivateRoute>
+                        <PrivateRoute path="/">
+                            <HomePage/>
+                        </PrivateRoute>
+                        <Route path="*">
+                            <NoMatch/>
+                        </Route>
+                    </Switch>
+                </Box>
             </Router>
         </ThemeProvider>
     );
