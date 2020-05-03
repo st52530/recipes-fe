@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from '../../networking/axiosConfig';
 
-const createStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     loginTitle: {
         textAlign: 'center'
     },
@@ -30,7 +30,7 @@ const createStyles = makeStyles((theme) => ({
 }));
 
 const LoginPage = () => {
-    const styles = createStyles();
+    const classes = useStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [isLoading, setLoading] = useState(false);
@@ -61,9 +61,9 @@ const LoginPage = () => {
     }
 
     return (
-        <Container component="main" maxWidth="xs" className={styles.loginForm}>
+        <Container component="main" maxWidth="xs" className={classes.loginForm}>
 
-            <Typography component="h1" variant="h5" className={styles.loginTitle}>
+            <Typography component="h1" variant="h5" className={classes.loginTitle}>
                 Přihlášení
             </Typography>
 
@@ -103,7 +103,7 @@ const LoginPage = () => {
                     }}
                     autoComplete="current-password"/>
 
-                <Box display="flex" justifyContent="center" className={styles.loginSpacingTopHalf}>
+                <Box display="flex" justifyContent="center" className={classes.loginSpacingTopHalf}>
                     {!isLoading && (
                         <Button
                             type="submit"
@@ -122,7 +122,7 @@ const LoginPage = () => {
                 container
                 direction="row"
                 justify="center"
-                className={styles.loginSpacingTop}
+                className={classes.loginSpacingTop}
                 alignItems="center">
                 <Grid item>
                     <Link href="#" variant="body2">
