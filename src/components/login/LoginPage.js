@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import axios from 'axios';
+import axios from '../../networking/axiosConfig';
 
 const createStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -48,7 +48,7 @@ const LoginPage = () => {
         setError(null)
 
         try {
-            const response = await axios.post(process.env.REACT_APP_API_URL + 'authenticate', {
+            const response = await axios.post('authenticate', {
                 username: username,
                 password: password
             })
