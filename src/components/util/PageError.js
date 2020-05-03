@@ -8,7 +8,7 @@ const PageError = ({error, tryAgain}) => {
 
 export default PageError
 
-PageError.propTypes = PropTypes.shape({
+PageError.propTypes = {
     error: PropTypes.string.isRequired,
     tryAgain: PropTypes.func.isRequired
-});
+};

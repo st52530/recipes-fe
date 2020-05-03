@@ -17,8 +17,8 @@ const ContentLoadingError = ({isLoading, error, tryAgain, children}) => {
 
 export default ContentLoadingError
 
-ContentLoadingError.propTypes = PropTypes.shape({
+ContentLoadingError.propTypes = {
     isLoading: PropTypes.bool.isRequired,
-    error: PropTypes.string.isRequired,
+    error: PropTypes.string,
     tryAgain: PropTypes.func.isRequired
-});
+}

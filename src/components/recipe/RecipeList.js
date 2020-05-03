@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RecipeList = ({recipes}) => {
+const RecipeList = ({recipes = []}) => {
     const recipesUi = recipes.map((recipe, index) => {
         // TODO: Another component.
         return (
@@ -13,6 +13,6 @@ const RecipeList = ({recipes}) => {
 
 export default RecipeList
 
-RecipeList.propTypes = PropTypes.shape({
-    recipes: PropTypes.array.isRequired
-});
+RecipeList.propTypes = {
+    recipes: PropTypes.array
+};
