@@ -28,16 +28,13 @@ const HomePage = () => {
 }
 
 const fetchRecipes = async (setRecipes, setError) => {
+    setError(null)
     try {
-        await sleep(3000)
-        const response = await axios.get('recipes/sdads')
+        const response = await axios.get('recipes')
         setRecipes(response.data)
     } catch (exception) {
-        setError("Něco se pokazilo\nZkuste to znovu.")
+        setError("Při načítání seznamu receptů se něco se pokazilo.\nZkuste to prosím znovu.")
     }
-}
-const sleep = (milliseconds) => {
-    return new Promise(resolve => setTimeout(resolve, milliseconds))
 }
 
 export default HomePage
