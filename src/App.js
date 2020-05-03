@@ -70,7 +70,7 @@ const App = () => {
                         <PrivateRoute exact path="/search">
                             <SearchPage/>
                         </PrivateRoute>
-                        <PrivateRoute path="/recipe/:id/:slug">
+                        <PrivateRoute exact path="/recipe/:id/:slug">
                             <RecipeDetail/>
                         </PrivateRoute>
                         <Route path="*" exact>
