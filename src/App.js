@@ -13,6 +13,8 @@ import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
+import AddPage from "./components/add/AddPage";
+import SearchPage from "./components/search/SearchPage";
 
 const useStyles = makeStyles(theme => ({
     toolbarArea: theme.mixins.toolbar
@@ -52,16 +54,22 @@ const App = () => {
                     <div className={classes.toolbarArea}/>
 
                     <Switch>
-                        <Route path="/login">
+                        <Route exact path="/login">
                             <LoginPage/>
                         </Route>
-                        <PrivateRoute path="/logout">
+                        <PrivateRoute exact path="/logout">
                             <Logout/>
                         </PrivateRoute>
-                        <PrivateRoute path="/">
+                        <PrivateRoute exact path="/">
                             <HomePage/>
                         </PrivateRoute>
-                        <Route path="*">
+                        <PrivateRoute exact path="/add">
+                            <AddPage/>
+                        </PrivateRoute>
+                        <PrivateRoute exact path="/search">
+                            <SearchPage/>
+                        </PrivateRoute>
+                        <Route path="*" exact>
                             <NoMatch/>
                         </Route>
                     </Switch>
