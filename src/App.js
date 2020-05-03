@@ -15,6 +15,7 @@ import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
 import AddPage from "./components/add/AddPage";
 import SearchPage from "./components/search/SearchPage";
+import RecipeDetail from "./components/recipe/RecipeDetail";
 
 const useStyles = makeStyles(theme => ({
     toolbarArea: theme.mixins.toolbar
@@ -68,6 +69,9 @@ const App = () => {
                         </PrivateRoute>
                         <PrivateRoute exact path="/search">
                             <SearchPage/>
+                        </PrivateRoute>
+                        <PrivateRoute path="/recipe/:id/:slug">
+                            <RecipeDetail/>
                         </PrivateRoute>
                         <Route path="*" exact>
                             <NoMatch/>
