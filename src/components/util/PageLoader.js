@@ -1,9 +1,10 @@
 import React from "react";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
-    progress: {
+    box: {
         position: 'absolute',
         left: '50%',
         top: '50%',
@@ -14,11 +15,12 @@ const useStyles = makeStyles((theme) => ({
 const PageLoader = () => {
     const classes = useStyles();
     return (
-        <CircularProgress
-            color="primary"
-            className={classes.progress}
-            thickness={4}
-            size={80}/>
+        <Box className={classes.box}>
+            <CircularProgress
+                color="primary"
+                thickness={4}
+                size={80}/>
+        </Box>
     )
 }
 
