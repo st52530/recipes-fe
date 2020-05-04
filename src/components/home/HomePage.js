@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import RecipeList from "../recipe/RecipeList";
-import axios, {setupAuthentication} from "../../networking/axiosConfig";
 import Box from '@material-ui/core/Box';
 import ContentLoadingError from "../util/ContentLoadingErrror";
+import {getRecipes} from "../../services/RecipeService";
 
 const HomePage = () => {
     const [recipes, setRecipes] = useState(null)
@@ -10,7 +10,6 @@ const HomePage = () => {
     const isLoading = recipes === null && error === null
 
     useEffect(() => {
-        setupAuthentication()
         fetchRecipes(setRecipes, setError)
     }, [])
 
@@ -30,8 +29,7 @@ const HomePage = () => {
 const fetchRecipes = async (setRecipes, setError) => {
     setError(null)
     try {
-        const response = await axios.get('recipes')
-        setRecipes(response.data)
+        setRecipes(await getRecipes())
     } catch (exception) {
         setError("Při načítání seznamu receptů se něco se pokazilo.\nZkuste to prosím znovu.")
     }

@@ -35,7 +35,7 @@ export async function login(username, password) {
         password: password
     })
     storeToken(response.data.token)
-    return response
+    return response.data
 }
 
 export function logout() {
