@@ -59,10 +59,12 @@ const RecipeListCard = ({recipe}) => {
     const classes = useStyles()
     const author = recipe.author.displayName || recipe.author.username
     const category = recipe.categories[0].name
+    const imageUrl = `${process.env.REACT_APP_API_URL}recipes/${recipe.id}/image`
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.actionArea}>
-                <img src={placeholder} className={classes.media} alt={recipe.name}/>
+                <img className={classes.media} src={imageUrl}
+                     onError={(e) => e.target.src = placeholder}/>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2" className={classes.headline}>
                         {recipe.name}
@@ -77,10 +79,6 @@ const RecipeListCard = ({recipe}) => {
             </CardActionArea>
         </Card>
     )
-}
-
-const getInitialLetters = (name) => {
-    return name.split(' ').map((item) => item[0])
 }
 
 export default RecipeListCard

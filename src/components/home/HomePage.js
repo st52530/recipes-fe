@@ -57,7 +57,6 @@ const HomePage = () => {
 const fetchRecipes = async (selectedPage, setRecipes, setError, setTotalPages, setTotalRecipes) => {
     setError(null)
     try {
-        console.log(selectedPage)
         const {content, totalPages, totalElements} = await getRecipes(selectedPage - 1, 'createdAt')
         setRecipes(content)
         setTotalRecipes(totalElements)
