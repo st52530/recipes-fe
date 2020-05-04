@@ -31,7 +31,9 @@ const useStyles = makeStyles((theme) => ({
         height: '100%'
     },
     media: {
-        height: 160
+        width: '100%',
+        height: 160,
+        objectFit: 'cover'
     },
     headline: {
         textOverflow: 'ellipsis',
