@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const RecipeList = ({recipes = []}) => {
+const RecipeList = ({recipes = [], totalCount}) => {
     const recipesUi = recipes.map((recipe, index) => {
         // TODO: Another component.
         return (
@@ -14,5 +14,6 @@ const RecipeList = ({recipes = []}) => {
 export default RecipeList
 
 RecipeList.propTypes = {
-    recipes: PropTypes.array
+    recipes: PropTypes.array,
+    totalCount: PropTypes.number
 };
