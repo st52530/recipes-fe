@@ -88,6 +88,8 @@ RecipeListCard.propTypes = {
         id: PropTypes.number,
         name: PropTypes.string,
         description: PropTypes.string,
-        author: PropTypes.object
+        author: PropTypes.object,
+        categories: PropTypes.array,
+        preparationTime: PropTypes.string
     })
 };
