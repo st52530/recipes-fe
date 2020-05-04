@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
             flex: '0 1 calc(25% - 1em)'
         }
     },
+    actionArea: {
+        height: '100%'
+    },
     media: {
         height: 160,
     },
@@ -51,7 +54,7 @@ const RecipeListCard = ({recipe}) => {
     const date = recipe.preparationTime
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className={classes.actionArea}>
                 <CardMedia
                     className={classes.media}
                     image="/static/images/cards/contemplative-reptile.jpg"
