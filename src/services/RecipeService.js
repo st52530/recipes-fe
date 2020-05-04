@@ -1,10 +1,10 @@
 import {getData} from "../networking/ResponseCachingUtil";
 import axios, {setupAuthentication} from "../networking/AxiosConfig";
 
-export async function getRecipes(page = 0, sort = 'createdAt') {
+export async function getRecipes(page = 0, orderBy, order) {
     const queryParams = {
         page,
-        sort,
+        sort: `${orderBy},${order}`,
         size: 8 // TODO: Increase later.
     }
 
