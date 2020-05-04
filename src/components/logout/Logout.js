@@ -1,8 +1,9 @@
 import React from "react";
 import {Redirect} from 'react-router-dom';
+import {logout} from "../../services/AuthenticationService";
 
 const Logout = () => {
-    sessionStorage.clear()
+    logout()
     return <Redirect to="/"/>
 }
 

@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import axios from '../../networking/axiosConfig';
+import {login, isLoggedIn} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -36,7 +36,7 @@ const LoginPage = () => {
     const [isLoading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    if (sessionStorage.getItem("token")) {
+    if (isLoggedIn()) {
         // When logged in - show home.
         return <Redirect to="/"/>
     }
@@ -48,11 +48,7 @@ const LoginPage = () => {
         setError(null)
 
         try {
-            const response = await axios.post('authenticate', {
-                username: username,
-                password: password
-            })
-            sessionStorage.setItem("token", response.data.token)
+            await login(username, password)
         } catch (exception) {
             console.error(exception)
             setError("Špatné jméno nebo heslo.")

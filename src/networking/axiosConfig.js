@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {getBearerToken} from "../services/AuthenticationService";
 
 // Create custom instance.
 const instance = axios.create({
@@ -7,10 +8,7 @@ const instance = axios.create({
 
 // Setup authentication headers.
 export function setupAuthentication() {
-    const token = sessionStorage.getItem("token")
-    if (token !== null) {
-        instance.defaults.headers.common['Authorization'] = "Bearer " + token;
-    }
+    instance.defaults.headers.common['Authorization'] = getBearerToken();
 }
 
 export default instance;

@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Redirect} from "react-router-dom";
+import {isLoggedIn} from "../services/AuthenticationService";
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
@@ -8,7 +9,7 @@ const PrivateRoute = ({children, ...rest}) => {
         <Route
             {...rest}
             render={({location}) =>
-                sessionStorage.getItem("token") ? (
+                isLoggedIn() ? (
                     children
                 ) : (
                     <Redirect
