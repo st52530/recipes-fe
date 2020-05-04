@@ -5,7 +5,7 @@ export async function getRecipes(page = 0, sort = 'createdAt') {
     const queryParams = {
         page,
         sort,
-        size: 20
+        size: 8 // TODO: Increase later.
     }
 
     setupAuthentication()

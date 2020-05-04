@@ -3,10 +3,8 @@ import PropTypes from "prop-types";
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
@@ -33,50 +31,51 @@ const useStyles = makeStyles((theme) => ({
         height: '100%'
     },
     media: {
-        height: 160,
+        height: 160
     },
-    maxLines: {
+    headline: {
         textOverflow: 'ellipsis',
         wordWrap: 'break-word',
         overflow: 'hidden',
         display: '-webkit-box',
         '-webkit-box-orient': 'vertical',
-        '-webkit-line-clamp': 2
+        '-webkit-line-clamp': 2,
+        marginBottom: 0
     },
-    avatar: {
-        backgroundColor: theme.palette.primary.main
+    description: {
+        textOverflow: 'ellipsis',
+        wordWrap: 'break-word',
+        overflow: 'hidden',
+        display: '-webkit-box',
+        '-webkit-box-orient': 'vertical',
+        '-webkit-line-clamp': 3,
+        marginTop: theme.spacing(1)
     }
 }));
 
 const RecipeListCard = ({recipe}) => {
     const classes = useStyles()
     const author = recipe.author.displayName || recipe.author.username
-    const date = recipe.preparationTime
+    const category = recipe.categories[0].name
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.actionArea}>
                 <CardMedia
                     className={classes.media}
+                    style={{backgroundColor:'red'}}
                     image="/static/images/cards/contemplative-reptile.jpg"
-                    title={recipe.name}
-                />
+                    title={recipe.name}/>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2" className={classes.maxLines}>
+                    <Typography gutterBottom variant="h5" component="h2" className={classes.headline}>
                         {recipe.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" className={classes.maxLines}>
+                    <Typography variant="body2" color="textPrimary" component="p">
+                        By {author} | {recipe.preparationTime} | {category}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p" className={classes.description}>
                         {recipe.description}
                     </Typography>
                 </CardContent>
-
-                <CardHeader
-                    avatar={
-                        <Avatar aria-label="recipe" className={classes.avatar}>
-                            {getInitialLetters(author)}
-                        </Avatar>
-                    }
-                    title={author}
-                    subheader={date}/>
             </CardActionArea>
         </Card>
     )
