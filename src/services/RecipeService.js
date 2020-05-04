@@ -1,5 +1,5 @@
 import {getData} from "../networking/ResponseCachingUtil";
-import axios, {setupAuthentication} from "../networking/axiosConfig";
+import axios, {setupAuthentication} from "../networking/AxiosConfig";
 
 export async function getRecipes(page = 0, sort = 'createdAt') {
     const queryParams = {

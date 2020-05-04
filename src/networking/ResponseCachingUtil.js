@@ -1,4 +1,4 @@
-import axios, {setupAuthentication} from "../networking/axiosConfig";
+import axios, {setupAuthentication} from "./AxiosConfig";
 
 // Get data from cache or from GET endpoint.
 // Returned data will be cached.

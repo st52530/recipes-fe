@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import axios from "../networking/axiosConfig";
+import axios from "../networking/AxiosConfig";
 
 const TOKEN_KEY = "token"
 
