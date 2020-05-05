@@ -64,7 +64,7 @@ const RecipeListCard = ({recipe}) => {
         <Card className={classes.root}>
             <CardActionArea className={classes.actionArea}>
                 <img className={classes.media} src={imageUrl}
-                     onError={(e) => e.target.src = placeholder}/>
+                     onError={(e) => e.target.src = placeholder} alt={recipe.name}/>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2" className={classes.headline}>
                         {recipe.name}

@@ -4,6 +4,8 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Pagination from '@material-ui/lab/Pagination';
 import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import {makeStyles} from '@material-ui/core/styles';
@@ -16,6 +18,29 @@ const useStyles = makeStyles((theme) => ({
     },
     paging: {
         marginTop: theme.spacing(2)
+    },
+    formControl: {
+        marginRight: theme.spacing(1),
+        marginTop: theme.spacing(2),
+        marginLeft: 0,
+        minWidth: '10em',
+        [theme.breakpoints.up('md')]: {
+            display: 'inline-block',
+            marginTop: theme.spacing(1),
+            marginLeft: theme.spacing(1)
+        }
+    },
+    headline: {
+        display: 'block',
+        [theme.breakpoints.up('md')]: {
+            display: 'inline-block'
+        }
+    },
+    selectBox: {
+        float: 'none',
+        [theme.breakpoints.up('md')]: {
+            float: 'right'
+        }
     }
 }));
 
@@ -40,28 +65,34 @@ const HomePage = () => {
 
     return (
         <Container component="main" maxWidth="lg" className={classes.container}>
-            <Box overflow="auto"> // TODO: Styles
-                <Typography component="h1" variant="h3" style={{ display: 'inline-block'}}>Seznam receptů</Typography>
-                // TODO: FormControl?
-                <Select
-                    label="Seřadit podle" // TODO: label
-                    value={orderBy}
-                    variant="outlined"
-                    style={{float:'right'}} // TODO: Styles
-                    onChange={(e) => setOrderBy(e.target.value)}>
-                    <MenuItem value="createdAt">Datum vytvoření</MenuItem>
-                    <MenuItem value="name">Název</MenuItem>
-                </Select>
-                <Select
-                    label="Směr řazení" // TODO: label
-                    value={order}
-                    variant="outlined"
-                    style={{float:'right'}} // TODO: Styles
-                    color="primary"
-                    onChange={(e) => setOrder(e.target.value)}>
-                    <MenuItem value="asc">Vzestupně</MenuItem>
-                    <MenuItem value="desc">Sestupně</MenuItem>
-                </Select>
+            <Box overflow="auto">
+                <Typography component="h1" variant="h3" className={classes.headline}>Seznam receptů</Typography>
+                <Box className={classes.selectBox}>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="order-by-label">Seřadit podle</InputLabel>
+                        <Select
+                            labelId="order-by-label"
+                            value={orderBy}
+                            fullWidth
+                            onChange={(e) => setOrderBy(e.target.value)}
+                            label="Seřadit podle">
+                            <MenuItem value="createdAt">Datum vytvoření</MenuItem>
+                            <MenuItem value="name">Název</MenuItem>
+                        </Select>
+                    </FormControl>
+                    <FormControl variant="outlined" className={classes.formControl}>
+                        <InputLabel id="order-label">Směr řazení</InputLabel>
+                        <Select
+                            labelId="order-label"
+                            value={order}
+                            fullWidth
+                            onChange={(e) => setOrder(e.target.value)}
+                            label="Směr řazení">
+                            <MenuItem value="asc">Vzestupně</MenuItem>
+                            <MenuItem value="desc">Sestupně</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
             </Box>
             <ContentLoadingError
                 isLoading={isLoading}
