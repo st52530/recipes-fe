@@ -12,7 +12,7 @@ const RecipeDetailPage = () => {
 
     return (
         <>
-            <RecipeDetailHeader name={"TODO!"} imageUrl={getRecipeImageUrl(id)}/>
+            <RecipeDetailHeader name={"TODO delsi titulek nebo jeste mnohem delsi"} imageUrl={getRecipeImageUrl(id)}/>
             <Container maxWidth="md" margin="auto">
                 <Typography component="p">Description</Typography>
             </Container>

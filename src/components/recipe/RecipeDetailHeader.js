@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import placeholder from '../../images/placeholder.svg';
 import RecipeListCard from "./RecipeListCard";
 
@@ -12,12 +12,10 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        marginBottom: '4rem',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        minHeight: 470,
-        overflow: 'visible'
+        minHeight: 470
     },
     overlay: {
         position: 'absolute',
@@ -28,17 +26,18 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: 'rgba(0,0,0,.3)',
     },
     mainFeaturedPostContent: {
-        position: 'absolute',
-        width: '80%',
-        margin: 'auto',
         padding: theme.spacing(3),
         textAlign: 'center',
-        bottom: '-3rem',
-        left: '10%',
         backgroundColor: theme.palette.background.default,
         color: 'black',
         fontWeight: 'bold'
     },
+    headerBox: {
+        position: 'relative',
+        top: -50,
+        padding: 0,
+        margin: '0 auto'
+    }
 }));
 
 const RecipeDetailHeader = ({name, imageUrl}) => {
@@ -49,12 +48,13 @@ const RecipeDetailHeader = ({name, imageUrl}) => {
             <Paper className={classes.mainFeaturedPost}
                    style={{backgroundImage: `url(${imageUrl}), url(${placeholder}`}}>
                 <div className={classes.overlay}/>
-                <Box>
-                    <Typography className={classes.mainFeaturedPostContent} component="h1" variant="h2">
-                        {name}
-                    </Typography>
-                </Box>
             </Paper>
+
+            <Container maxWidth="md" className={classes.headerBox}>
+                <Typography className={classes.mainFeaturedPostContent} component="h1" variant="h2">
+                    {name}
+                </Typography>
+            </Container>
         </>
     )
 }
