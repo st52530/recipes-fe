@@ -8,6 +8,7 @@ import NoMatch from "./routing/NoMatch";
 import PrivateRoute from "./routing/PrivateRoute";
 import LoginPage from "./components/login/LoginPage";
 import HomePage from "./components/home/HomePage";
+import Container from '@material-ui/core/Container';
 import Logout from "./components/logout/Logout";
 import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,7 +19,10 @@ import SearchPage from "./components/search/SearchPage";
 import RecipeDetail from "./components/recipe/RecipeDetail";
 
 const useStyles = makeStyles(theme => ({
-    toolbarArea: theme.mixins.toolbar
+    toolbarArea: theme.mixins.toolbar,
+    mainContainer: {
+        paddingTop: theme.spacing(2)
+    }
 }));
 
 const App = () => {
@@ -54,6 +58,7 @@ const App = () => {
                     {/* Take up toolbar space not to render content under it.*/}
                     <div className={classes.toolbarArea}/>
 
+                    <Container component="main" maxWidth="lg" className={classes.mainContainer}>
                     <Switch>
                         <Route exact path="/login">
                             <LoginPage/>
@@ -77,6 +82,7 @@ const App = () => {
                             <NoMatch/>
                         </Route>
                     </Switch>
+                    </Container>
                 </Box>
             </Router>
         </ThemeProvider>
