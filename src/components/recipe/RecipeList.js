@@ -1,18 +1,37 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Box from '@material-ui/core/Box';
+import RecipeListCard from "./RecipeListCard";
+import {makeStyles} from '@material-ui/core/styles';
 
-const RecipeList = ({recipes = []}) => {
+const useStyles = makeStyles((theme) => ({
+    aligner: {
+        flex: 'auto'
+    }
+}));
+
+const RecipeList = ({recipes = [], totalCount}) => {
+    const classes = useStyles();
     const recipesUi = recipes.map((recipe, index) => {
-        // TODO: Another component.
         return (
-            <p key={recipe.id}>{recipe.name}</p>
+            <RecipeListCard key={recipe.id} recipe={recipe}/>
         )
     })
-    return recipesUi
+
+    return (
+        <>
+            <p>Celkem nalezeno {totalCount} receptů.</p>
+            <Box display="flex" justifyContent="space-between" flexWrap="wrap" className={classes.root}>
+                {recipesUi}
+                <div className={classes.aligner}/>
+            </Box>
+        </>
+    )
 }
 
 export default RecipeList
 
 RecipeList.propTypes = {
-    recipes: PropTypes.array
+    recipes: PropTypes.array,
+    totalCount: PropTypes.number
 };
