@@ -16,7 +16,7 @@ import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
 import AddPage from "./components/add/AddPage";
 import SearchPage from "./components/search/SearchPage";
-import RecipeDetail from "./components/recipe/RecipeDetail";
+import RecipeDetailPage from "./components/recipe/RecipeDetailPage";
 
 const useStyles = makeStyles(theme => ({
     toolbarArea: theme.mixins.toolbar,
@@ -59,29 +59,29 @@ const App = () => {
                     <div className={classes.toolbarArea}/>
 
                     <Container component="main" maxWidth="lg" className={classes.mainContainer}>
-                    <Switch>
-                        <Route exact path="/login">
-                            <LoginPage/>
-                        </Route>
-                        <PrivateRoute exact path="/logout">
-                            <Logout/>
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/">
-                            <HomePage/>
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/add">
-                            <AddPage/>
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/search">
-                            <SearchPage/>
-                        </PrivateRoute>
-                        <PrivateRoute exact path="/recipe/:id/:slug">
-                            <RecipeDetail/>
-                        </PrivateRoute>
-                        <Route path="*" exact>
-                            <NoMatch/>
-                        </Route>
-                    </Switch>
+                        <Switch>
+                            <Route exact path="/login">
+                                <LoginPage/>
+                            </Route>
+                            <PrivateRoute exact path="/logout">
+                                <Logout/>
+                            </PrivateRoute>
+                            <PrivateRoute exact path="/">
+                                <HomePage/>
+                            </PrivateRoute>
+                            <PrivateRoute exact path="/add">
+                                <AddPage/>
+                            </PrivateRoute>
+                            <PrivateRoute exact path="/search">
+                                <SearchPage/>
+                            </PrivateRoute>
+                            <PrivateRoute exact path="/recipe/:id/:slug">
+                                <RecipeDetailPage/>
+                            </PrivateRoute>
+                            <Route path="*" exact>
+                                <NoMatch/>
+                            </Route>
+                        </Switch>
                     </Container>
                 </Box>
             </Router>
