@@ -12,11 +12,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
+        marginBottom: '4rem',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        height: 470
+        minHeight: 470,
+        overflow: 'visible'
     },
     overlay: {
         position: 'absolute',
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         margin: 'auto',
         padding: theme.spacing(3),
         textAlign: 'center',
-        bottom: '-1em',
+        bottom: '-3rem',
         left: '10%',
         backgroundColor: theme.palette.background.default,
         color: 'black',
