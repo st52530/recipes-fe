@@ -14,6 +14,8 @@ import RecipeCategories from "./RecipeCategories";
 import FaceIcon from '@material-ui/icons/Face';
 import TimerIcon from '@material-ui/icons/Timer';
 import RecipeIngredientsList from "./RecipeIngredientsList";
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,7 +45,7 @@ const RecipeDetailPage = () => {
     const author = recipe && (recipe.author.displayName || recipe.author.username)
 
     // TODO:  ingredients.
-    // TODO: Edit/delete.
+    // TODO: Show at a proper time Edit/delete.
     return (
         <ContentLoadingError isLoading={isLoading} error={error} tryAgain={() => fetchRecipe(id, setRecipe, setError)}>
             {
@@ -52,15 +54,20 @@ const RecipeDetailPage = () => {
                         <RecipeDetailHeader name={recipe.name} imageUrl={getRecipeImageUrl(id)}/>
                         <Container maxWidth="md" className={classes.root}>
                             <Box display="flex" justifyContent="center" flexWrap="wrap">
-                                <Box display="flex" justifyContent="center" alignItems="center">
-                                    <TimerIcon color="primary" className={classes.icon}/>
-                                    <Typography component="p">{recipe.preparationTime}</Typography>
-                                </Box>
-                                <Box display="flex" justifyContent="center" alignItems="center"
-                                     className={classes.authorBox}>
-                                    <FaceIcon color="primary" className={classes.icon}/>
-                                    <Typography component="p">{author}</Typography>
-                                </Box>
+                                <Tooltip arrow TransitionComponent={Zoom} title="Doba přípravy" placement="left">
+                                    <Box display="flex" justifyContent="center" alignItems="center">
+                                        <TimerIcon color="primary" className={classes.icon}/>
+                                        <Typography component="p">{recipe.preparationTime}</Typography>
+                                    </Box>
+                                </Tooltip>
+
+                                <Tooltip arrow TransitionComponent={Zoom} title="Autor receptu" placement="right">
+                                    <Box display="flex" justifyContent="center" alignItems="center"
+                                         className={classes.authorBox}>
+                                        <FaceIcon color="primary" className={classes.icon}/>
+                                        <Typography component="p">{author}</Typography>
+                                    </Box>
+                                </Tooltip>
                             </Box>
                             <RecipeCategories categories={recipe.categories}/>
                             <Typography component="p" gutterBottom>{recipe.description}</Typography>
