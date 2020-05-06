@@ -72,7 +72,7 @@ const HomePage = () => {
                             fullWidth
                             onChange={(e) => setOrderBy(e.target.value)}
                             label="Seřadit podle">
-                            <MenuItem value="createdAt">Datum vytvoření</MenuItem>
+                            <MenuItem value="createdAt">Data vytvoření</MenuItem>
                             <MenuItem value="name">Název</MenuItem>
                         </Select>
                     </FormControl>
