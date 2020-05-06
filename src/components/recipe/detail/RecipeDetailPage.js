@@ -9,12 +9,13 @@ import {getRecipe, getRecipeImageUrl} from "../../../services/RecipeService";
 import {makeStyles} from '@material-ui/core/styles';
 import ContentLoadingError from "../../util/ContentLoadingErrror";
 import RecipeInstructions from "./RecipeInstructions";
+import RecipeCategories from "./RecipeCategories";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         position: 'relative',
         top: -50
-    },
+    }
 }));
 
 const RecipeDetailPage = () => {
@@ -38,6 +39,7 @@ const RecipeDetailPage = () => {
                     <>
                         <RecipeDetailHeader name={recipe.name} imageUrl={getRecipeImageUrl(id)}/>
                         <Container maxWidth="md" className={classes.root}>
+                            <RecipeCategories categories={recipe.categories} />
                             <Typography component="p" gutterBottom>{recipe.description}</Typography>
                             <Typography component="h2" variant="h4" gutterBottom>Postup</Typography>
                             <RecipeInstructions instructions={recipe.instructions.split('\n')}/>
