@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import placeholder from '../../images/placeholder.svg';
+import placeholder from '../../../images/placeholder.svg';
+import {getSlug} from "../../../util/TextUtil";
+import {getRecipeImageUrl} from "../../../services/RecipeService";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
         '@media screen and (min-width: 65em)': {
             maxWidth: 'calc(25% -  1em)',
             flex: '0 1 calc(25% - 1em)'
-        }
+        },
+        textDecoration: 'none'
     },
     actionArea: {
         height: '100%'
@@ -59,9 +63,12 @@ const RecipeListCard = ({recipe}) => {
     const classes = useStyles()
     const author = recipe.author.displayName || recipe.author.username
     const category = recipe.categories[0].name
-    const imageUrl = `${process.env.REACT_APP_API_URL}recipes/${recipe.id}/image`
+    const imageUrl = getRecipeImageUrl(recipe.id)
+
+    const slugName = getSlug(recipe.name)
+
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} component={Link} to={`/recipe/${recipe.id}/${slugName}`}>
             <CardActionArea className={classes.actionArea}>
                 <img className={classes.media} src={imageUrl}
                      onError={(e) => e.target.src = placeholder} alt={recipe.name}/>

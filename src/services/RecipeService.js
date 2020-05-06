@@ -17,3 +17,6 @@ export async function getRecipe(id) {
     return await getData(`recipes/${id}`)
 }
 
+export function getRecipeImageUrl(id) {
+    return `${process.env.REACT_APP_API_URL}recipes/${id}/image`
+}

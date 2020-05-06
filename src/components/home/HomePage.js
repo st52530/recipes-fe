@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
-import RecipeList from "../recipe/RecipeList";
+import RecipeList from "../recipe/list/RecipeList";
 import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
 import Pagination from '@material-ui/lab/Pagination';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,9 +12,6 @@ import ContentLoadingError from "../util/ContentLoadingErrror";
 import {getRecipes} from "../../services/RecipeService";
 
 const useStyles = makeStyles((theme) => ({
-    container: {
-        paddingTop: theme.spacing(2)
-    },
     paging: {
         marginTop: theme.spacing(2)
     },
@@ -64,7 +60,7 @@ const HomePage = () => {
     }, [currentPage, order, orderBy])
 
     return (
-        <Container component="main" maxWidth="lg" className={classes.container}>
+        <>
             <Box overflow="auto">
                 <Typography component="h1" variant="h3" className={classes.headline}>Seznam receptů</Typography>
                 <Box className={classes.selectBox}>
@@ -76,7 +72,7 @@ const HomePage = () => {
                             fullWidth
                             onChange={(e) => setOrderBy(e.target.value)}
                             label="Seřadit podle">
-                            <MenuItem value="createdAt">Datum vytvoření</MenuItem>
+                            <MenuItem value="createdAt">Data vytvoření</MenuItem>
                             <MenuItem value="name">Název</MenuItem>
                         </Select>
                     </FormControl>
@@ -111,7 +107,7 @@ const HomePage = () => {
                     )
                 }
             </ContentLoadingError>
-        </Container>
+        </>
     )
 }
 
