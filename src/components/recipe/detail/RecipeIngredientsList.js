@@ -12,9 +12,9 @@ const useStyles = makeStyles((theme) => ({
 const RecipeIngredientsList = ({ingredients, editMode = false, onIngredientsChanged}) => {
     const classes = useStyles()
 
-    const handleDelete = (ingredient) => () => {
-        // TODO.
-    };
+    // const handleDelete = (ingredient) => () => {
+    //     // TODO.
+    // };
 
     // TODO: Add!
 

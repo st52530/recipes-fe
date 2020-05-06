@@ -18,17 +18,17 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
 
     // TODO: Edit mode!
 
-    const onSingleInstructionChanged = (index, text) => {
-        const newInstructions = [...instructions]
-        newInstructions[index] = text
-        onInstructionsChanged(newInstructions)
-    }
-
-    const onInstructionRemoved = (index) => {
-        const newInstructions = [...instructions]
-        newInstructions.splice(index, 1)
-        onInstructionsChanged(newInstructions)
-    }
+    // const onSingleInstructionChanged = (index, text) => {
+    //     const newInstructions = [...instructions]
+    //     newInstructions[index] = text
+    //     onInstructionsChanged(newInstructions)
+    // }
+    //
+    // const onInstructionRemoved = (index) => {
+    //     const newInstructions = [...instructions]
+    //     newInstructions.splice(index, 1)
+    //     onInstructionsChanged(newInstructions)
+    // }
 
     const instructionsUi = instructions.map((instruction, index) => (
         <Step key={index} active>
