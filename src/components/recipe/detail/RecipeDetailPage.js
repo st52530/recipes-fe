@@ -44,7 +44,6 @@ const RecipeDetailPage = () => {
 
     const author = recipe && (recipe.author.displayName || recipe.author.username)
 
-    // TODO:  ingredients.
     // TODO: Show at a proper time Edit/delete.
     return (
         <ContentLoadingError isLoading={isLoading} error={error} tryAgain={() => fetchRecipe(id, setRecipe, setError)}>
