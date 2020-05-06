@@ -6,9 +6,9 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import placeholder from '../../images/placeholder.svg';
-import {getSlug} from "../../util/TextUtil";
-import {getRecipeImageUrl} from "../../services/RecipeService";
+import placeholder from '../../../images/placeholder.svg';
+import {getSlug} from "../../../util/TextUtil";
+import {getRecipeImageUrl} from "../../../services/RecipeService";
 
 const useStyles = makeStyles((theme) => ({
     root: {

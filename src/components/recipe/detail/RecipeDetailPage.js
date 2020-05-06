@@ -5,9 +5,10 @@ import {
 import Typography from '@material-ui/core/Typography';
 import RecipeDetailHeader from "./RecipeDetailHeader";
 import Container from '@material-ui/core/Container';
-import {getRecipe, getRecipeImageUrl} from "../../services/RecipeService";
+import {getRecipe, getRecipeImageUrl} from "../../../services/RecipeService";
 import {makeStyles} from '@material-ui/core/styles';
-import ContentLoadingError from "../util/ContentLoadingErrror";
+import ContentLoadingError from "../../util/ContentLoadingErrror";
+import RecipeInstructions from "./RecipeInstructions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,7 +40,7 @@ const RecipeDetailPage = () => {
                         <Container maxWidth="md" className={classes.root}>
                             <Typography component="p" gutterBottom>{recipe.description}</Typography>
                             <Typography component="h2" variant="h4" gutterBottom>Postup</Typography>
-                            <Typography component="p">{recipe.instructions}</Typography>
+                            <RecipeInstructions instructions={recipe.instructions.split('\n')}/>
                         </Container>
                     </>
                 )

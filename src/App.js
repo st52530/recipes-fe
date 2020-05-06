@@ -16,7 +16,7 @@ import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
 import AddPage from "./components/add/AddPage";
 import SearchPage from "./components/search/SearchPage";
-import RecipeDetailPage from "./components/recipe/RecipeDetailPage";
+import RecipeDetailPage from "./components/recipe/detail/RecipeDetailPage";
 
 const useStyles = makeStyles(theme => ({
     toolbarArea: theme.mixins.toolbar,

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import RecipeList from "../recipe/RecipeList";
+import RecipeList from "../recipe/list/RecipeList";
 import Box from '@material-ui/core/Box';
 import Pagination from '@material-ui/lab/Pagination';
 import Typography from '@material-ui/core/Typography';

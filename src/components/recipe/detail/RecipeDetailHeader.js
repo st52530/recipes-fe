@@ -4,8 +4,8 @@ import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import placeholder from '../../images/placeholder.svg';
-import RecipeListCard from "./RecipeListCard";
+import placeholder from '../../../images/placeholder.svg';
+import RecipeListCard from "../list/RecipeListCard";
 
 const useStyles = makeStyles((theme) => ({
     mainFeaturedPost: {
