@@ -40,9 +40,12 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
     ))
 
     return (
-        <Stepper orientation="vertical" className={classes.stepper}>
-            {instructionsUi}
-        </Stepper>
+        <>
+            <Typography component="h2" variant="h4" gutterBottom>Postup</Typography>
+            <Stepper orientation="vertical" className={classes.stepper}>
+                {instructionsUi}
+            </Stepper>
+        </>
     )
 }
 

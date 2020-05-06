@@ -13,6 +13,7 @@ import RecipeInstructions from "./RecipeInstructions";
 import RecipeCategories from "./RecipeCategories";
 import FaceIcon from '@material-ui/icons/Face';
 import TimerIcon from '@material-ui/icons/Timer';
+import RecipeIngredientsList from "./RecipeIngredientsList";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,7 +64,7 @@ const RecipeDetailPage = () => {
                             </Box>
                             <RecipeCategories categories={recipe.categories}/>
                             <Typography component="p" gutterBottom>{recipe.description}</Typography>
-                            <Typography component="h2" variant="h4" gutterBottom>Postup</Typography>
+                            <RecipeIngredientsList ingredients={recipe.ingredients}/>
                             <RecipeInstructions instructions={recipe.instructions.split('\n')}/>
                         </Container>
                     </>
