@@ -28,6 +28,8 @@ const RecipeDetailPage = () => {
         fetchRecipe(id, setRecipe, setError)
     }, [id])
 
+    // TODO: Preparation time, ingredients, categories, Author.
+    // TODO: Edit/delete.
     return (
         <ContentLoadingError isLoading={isLoading} error={error} tryAgain={() => fetchRecipe(id, setRecipe, setError)}>
             {
@@ -35,8 +37,8 @@ const RecipeDetailPage = () => {
                     <>
                         <RecipeDetailHeader name={recipe.name} imageUrl={getRecipeImageUrl(id)}/>
                         <Container maxWidth="md" className={classes.root}>
-                            <Typography component="p">{recipe.description}</Typography>
-                            <Typography component="h2" variant="h4">Postup</Typography>
+                            <Typography component="p" gutterBottom>{recipe.description}</Typography>
+                            <Typography component="h2" variant="h4" gutterBottom>Postup</Typography>
                             <Typography component="p">{recipe.instructions}</Typography>
                         </Container>
                     </>
