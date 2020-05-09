@@ -14,6 +14,7 @@ import TimerIcon from '@material-ui/icons/Timer';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -100,6 +101,16 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage, a
                     editMode
                     instructions={recipe.instructions}
                     onInstructionsChanged={(instructions) => setRecipe({...recipe, instructions})}/>
+
+
+                <Button
+                    fullWidth
+                    disabled={!isRecipeValid(recipe)}
+                    onClick={submitRecipe}
+                    variant="contained"
+                    color="primary">
+                    Uložit
+                </Button>
             </Container>
         </>
     )
@@ -114,4 +125,29 @@ EditRecipeFragment.propTypes = {
     image: PropTypes.object,
     setImage: PropTypes.func,
     allCategories: PropTypes.array
+}
+
+function isRecipeValid(recipe) {
+    if (!recipe.name || recipe.name === "") {
+        return false
+    }
+    if (!recipe.description || recipe.description === "") {
+        return false
+    }
+    if (!recipe.preparationTime || recipe.preparationTime === "") {
+        return false
+    }
+    if (recipe.categories.length < 1) {
+        return false
+    }
+    const filledInstructions = recipe.instructions.filter((item) => item.text && item.text !== "")
+    if (filledInstructions.length < 1) {
+        return false
+    }
+    const filledIngredients = recipe.ingredients.filter((item) => item.amount && item.amount !== "")
+    if (filledIngredients.length < 1) {
+        return false
+    }
+
+    return true
 }
