@@ -13,7 +13,6 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import RecipeListCard from "../list/RecipeListCard";
-import RecipeCategories from "./RecipeCategories";
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
