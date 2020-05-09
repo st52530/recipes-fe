@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from 'prop-types';
 import RecipeDetailHeader from "../detail/RecipeDetailHeader";
 import RecipeCategories from "../detail/RecipeCategories";
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage}) => {
+const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage, allCategories}) => {
     const classes = useStyles()
 
     const author = recipe.author.displayName || recipe.author.username
@@ -72,7 +72,12 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage}) 
                         </Box>
                     </Tooltip>
                 </Box>
-                <RecipeCategories editMode categories={recipe.categories}/>
+                <RecipeCategories
+                    editMode
+                    categories={recipe.categories}
+                    allCategories={allCategories}
+                    onCategoriesChanged={(categories) => setRecipe({...recipe, categories})}
+                />
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -107,5 +112,6 @@ EditRecipeFragment.propTypes = {
     setRecipe: PropTypes.func,
     submitRecipe: PropTypes.func,
     image: PropTypes.object,
-    setImage: PropTypes.func
+    setImage: PropTypes.func,
+    allCategories: PropTypes.array
 }
