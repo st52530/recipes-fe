@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     editText: {
         marginBottom: theme.spacing(2),
         marginRight: theme.spacing(2)
+    },
+    addButton: {
+        marginBottom: theme.spacing(2)
     }
 }));
 
@@ -96,7 +99,8 @@ const RecipeIngredientsList = ({ingredients, editMode = false, onIngredientsChan
                             setSelectedIngredient(null)
                         }}
                         disabled={selectedIngredient === null || alreadyUsedIds.includes(selectedIngredient.id)}
-                        color="primary">
+                        color="primary"
+                        className={classes.addButton}>
                         Přidat ingredienci
                     </Button>
                 </>

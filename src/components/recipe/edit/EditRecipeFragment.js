@@ -77,6 +77,7 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage}) 
                     variant="outlined"
                     margin="normal"
                     required
+                    multiline
                     label="Popis receptu"
                     fullWidth
                     value={recipe.description}
