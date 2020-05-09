@@ -16,6 +16,7 @@ import TimerIcon from '@material-ui/icons/Timer';
 import RecipeIngredientsList from "./RecipeIngredientsList";
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
+import {getCurrentUser} from "../../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,13 +45,17 @@ const RecipeDetailPage = () => {
 
     const author = recipe && (recipe.author.displayName || recipe.author.username)
 
-    // TODO: Show at a proper time Edit/delete.
+    const currentUser = getCurrentUser()
+    const showEditIcons = recipe && currentUser.id === recipe.author.id
     return (
         <ContentLoadingError isLoading={isLoading} error={error} tryAgain={() => fetchRecipe(id, setRecipe, setError)}>
             {
                 recipe != null && (
                     <>
-                        <RecipeDetailHeader name={recipe.name} imageUrl={getRecipeImageUrl(id)}/>
+                        <RecipeDetailHeader
+                            name={recipe.name}
+                            imageUrl={getRecipeImageUrl(id)}
+                            showEditIcons={showEditIcons}/>
                         <Container maxWidth="md" className={classes.root}>
                             <Box display="flex" justifyContent="center" flexWrap="wrap">
                                 <Tooltip arrow TransitionComponent={Zoom} title="Doba přípravy" placement="left">
