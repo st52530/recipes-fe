@@ -13,8 +13,6 @@ import FaceIcon from '@material-ui/icons/Face';
 import TimerIcon from '@material-ui/icons/Timer';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
-import {getCurrentUser} from "../../../services/AuthenticationService";
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +63,7 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe}) => {
                         </Box>
                     </Tooltip>
                 </Box>
-                <RecipeCategories categories={recipe.categories}/>
+                <RecipeCategories editMode categories={recipe.categories}/>
                 <TextField
                     variant="outlined"
                     margin="normal"

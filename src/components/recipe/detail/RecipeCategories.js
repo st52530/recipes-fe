@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,11 +22,26 @@ const useStyles = makeStyles((theme) => ({
 const RecipeCategories = ({categories, editMode = false, onCategoriesChanged}) => {
     const classes = useStyles()
 
-    const handleDelete = (category) => () => {
+    const handleDelete = (e) => () => {
         // TODO.
     };
 
+    const handleAdd = () => () => {
+        // TODO dialog.
+    };
+
     // TODO: Add!
+    const addCategory = (
+        <li key={-1}>
+            <Chip
+                variant="outlined"
+                color="primary"
+                label="Přidat kategorii"
+                onDelete={handleAdd}
+                deleteIcon={<AddIcon />}
+                className={classes.chip}/>
+        </li>
+    )
 
     return (
         <ul className={classes.root}>
@@ -36,11 +52,12 @@ const RecipeCategories = ({categories, editMode = false, onCategoriesChanged}) =
                             variant="outlined"
                             color="primary"
                             label={category.name}
-                            onDelete={editMode ? handleDelete(category) : undefined }
+                            onDelete={editMode ? handleDelete : undefined }
                             className={classes.chip}/>
                     </li>
                 );
             })}
+            {editMode && addCategory}
         </ul>
     )
 }
