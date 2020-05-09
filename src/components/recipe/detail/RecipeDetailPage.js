@@ -71,7 +71,7 @@ const RecipeDetailPage = () => {
                             <RecipeCategories categories={recipe.categories}/>
                             <Typography component="p" gutterBottom>{recipe.description}</Typography>
                             <RecipeIngredientsList ingredients={recipe.ingredients}/>
-                            <RecipeInstructions instructions={recipe.instructions.split('\n')}/>
+                            <RecipeInstructions instructions={recipe.instructions}/>
                         </Container>
                     </>
                 )

@@ -13,7 +13,8 @@ import {getRecipes} from "../../services/RecipeService";
 
 const useStyles = makeStyles((theme) => ({
     paging: {
-        marginTop: theme.spacing(2)
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2)
     },
     formControl: {
         marginRight: theme.spacing(1),

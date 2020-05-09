@@ -34,7 +34,7 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
         <Step key={index} active>
             <StepLabel>Krok {index + 1}</StepLabel>
             <StepContent>
-                <Typography>{instruction}</Typography>
+                <Typography>{instruction.text}</Typography>
             </StepContent>
         </Step>
     ))
