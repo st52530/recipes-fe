@@ -86,7 +86,10 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage}) 
                             description: e.target.value
                         })
                     }}/>
-                <RecipeIngredientsList ingredients={recipe.ingredients}/>
+                <RecipeIngredientsList
+                    editMode
+                    ingredients={recipe.ingredients}
+                    onIngredientsChanged={(ingredients) => setRecipe({...recipe, ingredients})}/>
                 <RecipeInstructions
                     editMode
                     instructions={recipe.instructions}
