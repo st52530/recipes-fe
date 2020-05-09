@@ -14,7 +14,7 @@ import NavBar from "./components/navbar/NavBar";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Box from '@material-ui/core/Box';
 import {createMuiTheme, ThemeProvider, makeStyles} from '@material-ui/core/styles';
-import AddPage from "./components/add/AddPage";
+import AddPage from "./components/recipe/add/AddPage";
 import SearchPage from "./components/search/SearchPage";
 import RecipeDetailPage from "./components/recipe/detail/RecipeDetailPage";
 

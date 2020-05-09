@@ -3,13 +3,16 @@ import axios from "../networking/AxiosConfig";
 
 const TOKEN_KEY = "token"
 
-function storeToken(token) {
+const CURRENT_USER_KEY = "currentUser"
+
+function storeAuthData({token, user}) {
     // Token is valid for 7 days.
     const config = {
         expires: 7,
         sameSite: 'strict'
     }
     Cookies.set(TOKEN_KEY, token, config)
+    Cookies.set(CURRENT_USER_KEY, JSON.stringify(user), config)
 }
 
 function getToken() {
@@ -25,6 +28,10 @@ export function getBearerToken() {
     return "Bearer " + token;
 }
 
+export function getCurrentUser() {
+    return JSON.parse(Cookies.get(CURRENT_USER_KEY))
+}
+
 export function isLoggedIn() {
     return getToken() !== undefined
 }
@@ -34,7 +41,7 @@ export async function login(username, password) {
         username: username,
         password: password
     })
-    storeToken(response.data.token)
+    storeAuthData(response.data)
     return response.data
 }
 
@@ -42,4 +49,5 @@ export function logout() {
     localStorage.clear()
     sessionStorage.clear()
     Cookies.remove(TOKEN_KEY)
+    Cookies.remove(CURRENT_USER_KEY)
 }
