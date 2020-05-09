@@ -13,9 +13,11 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Tooltip from '@material-ui/core/Tooltip';
 import Zoom from '@material-ui/core/Zoom';
 import RecipeListCard from "../list/RecipeListCard";
+import RecipeCategories from "./RecipeCategories";
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
-    mainFeaturedPost: {
+    hero: {
         position: 'relative',
         backgroundColor: theme.palette.grey[800],
         color: theme.palette.common.white,
@@ -31,19 +33,30 @@ const useStyles = makeStyles((theme) => ({
         right: 0,
         left: 0,
         backgroundColor: 'rgba(0,0,0,.3)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
-    mainFeaturedPostContent: {
-        padding: theme.spacing(3),
+    editImage: {
+        cursor: 'pointer',
+        fontSize: 100
+    },
+    recipeTitle: {
         textAlign: 'center',
-        backgroundColor: theme.palette.background.default,
+        color: 'black',
+        fontWeight: 'bold'
+    },
+    recipeTitleEdit: {
+        textAlign: 'center',
         color: 'black',
         fontWeight: 'bold'
     },
     headerBox: {
         position: 'relative',
         top: -50,
-        padding: 0,
-        margin: '0 auto'
+        margin: '0 auto',
+        padding: theme.spacing(3),
+        backgroundColor: theme.palette.background.default
     },
     editIconsBox: {
         position: 'relative',
@@ -64,14 +77,38 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false}) => {
+const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false, editMode = false, setName, onFileSelected}) => {
     const classes = useStyles()
+
+    let uploadInput = null
+
+    const selectImage = () => {
+        uploadInput.click()
+    }
+
+    const onFileChanged = (e) => {
+        const file = e.target.files[0]
+        onFileSelected(file)
+    }
 
     return (
         <>
-            <Paper className={classes.mainFeaturedPost}
+            <Paper className={classes.hero}
                    style={{backgroundImage: `url(${imageUrl}), url(${placeholder}`}}>
-                <div className={classes.overlay}/>
+                <div className={classes.overlay}>
+                    {editMode && (
+                        <>
+                            <EditIcon color="white" className={classes.editImage} onClick={selectImage}/>
+                            <input
+                                type="file"
+                                name="file"
+                                accept="image/*"
+                                onChange={onFileChanged}
+                                ref={(ref) => uploadInput = ref}
+                                style={{display: 'none'}}/>
+                        </>
+                    )}
+                </div>
                 {
                     showEditIcons && (
                         <Box className={classes.editIconsBox}>
@@ -95,9 +132,23 @@ const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false}) => {
             </Paper>
 
             <Container maxWidth="md" className={classes.headerBox}>
-                <Typography className={classes.mainFeaturedPostContent} component="h1" variant="h2">
-                    {name}
-                </Typography>
+                {editMode ? (
+                    <TextField
+                        className={classes.recipeTitleEdit}
+                        variant="outlined"
+                        margin="normal"
+                        required
+                        label="Název receptu"
+                        fullWidth
+                        value={name}
+                        onChange={(e) => {
+                            setName(e.target.value)
+                        }}/>
+                ) : (
+                    <Typography className={classes.recipeTitle} component="h1" variant="h2">
+                        {name}
+                    </Typography>
+                )}
             </Container>
         </>
     )

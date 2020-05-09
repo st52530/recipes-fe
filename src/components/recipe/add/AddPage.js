@@ -15,16 +15,25 @@ const AddPage = () => {
     const classes = useStyles()
     const currentUser = getCurrentUser()
     const [recipe, setRecipe] = useState({
+        name: "",
+        description: "",
         instructions: [],
         categories: [],
         ingredients: [],
         author: currentUser
     })
+    const [image, setImage] = useState(null)
 
     return (
         <>
             <Typography component="h1" variant="h3" className={classes.headline}>Přidat nový recept</Typography>
-            <EditRecipeFragment recipe={recipe} setRecipe={setRecipe} submitRecipe={addNewRecipe}/>
+            <EditRecipeFragment
+                recipe={recipe}
+                setRecipe={setRecipe}
+                submitRecipe={addNewRecipe}
+                image={image}
+                setImage={setImage}
+            />
         </>
     )
 }

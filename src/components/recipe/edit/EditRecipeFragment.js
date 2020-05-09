@@ -28,13 +28,22 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditRecipeFragment = ({recipe, setRecipe, submitRecipe}) => {
+const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage}) => {
     const classes = useStyles()
 
     const author = recipe.author.displayName || recipe.author.username
+    const recipeUrl = image ? URL.createObjectURL(image) : getRecipeImageUrl(recipe.id)
     return (
         <>
-            <RecipeDetailHeader name={recipe.name} imageUrl={getRecipeImageUrl(recipe.id)}/>
+            <RecipeDetailHeader
+                name={recipe.name}
+                imageUrl={recipeUrl}
+                editMode
+                setName={(name) => {
+                    setRecipe({...recipe, name})
+                }}
+                onFileSelected={setImage}
+            />
             <Container maxWidth="md" className={classes.root}>
                 <Box display="flex" justifyContent="center" flexWrap="wrap">
                     <Tooltip arrow TransitionComponent={Zoom} title="Doba přípravy" placement="left">
@@ -89,5 +98,7 @@ export default EditRecipeFragment
 EditRecipeFragment.propTypes = {
     recipe: PropTypes.object,
     setRecipe: PropTypes.func,
-    submitRecipe: PropTypes.func
+    submitRecipe: PropTypes.func,
+    image: PropTypes.object,
+    setImage: PropTypes.func
 }
