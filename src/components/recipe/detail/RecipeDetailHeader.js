@@ -116,20 +116,18 @@ const RecipeDetailHeader = (
         <>
             <Paper className={classes.hero}
                    style={{backgroundImage: `url(${imageUrl}), url(${placeholder}`}}>
-                <div className={classes.overlay}>
-                    {editMode && (
-                        <>
-                            <EditIcon color="white" className={classes.editImage} onClick={selectImage}/>
-                            <input
-                                type="file"
-                                name="file"
-                                accept="image/*"
-                                onChange={onFileChanged}
-                                ref={(ref) => uploadInput = ref}
-                                style={{display: 'none'}}/>
-                        </>
-                    )}
-                </div>
+                {editMode && (
+                    <div className={classes.overlay}>
+                        <EditIcon className={classes.editImage} onClick={selectImage}/>
+                        <input
+                            type="file"
+                            name="file"
+                            accept="image/*"
+                            onChange={onFileChanged}
+                            ref={(ref) => uploadInput = ref}
+                            style={{display: 'none'}}/>
+                    </div>
+                )}
                 {
                     showEditIcons && (
                         <Box className={classes.editIconsBox}>

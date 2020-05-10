@@ -40,7 +40,7 @@ const RecipeCategories = ({categories, editMode = false, onCategoriesChanged, al
     };
 
     const menuItems = allCategories.map((category, index) => {
-        return <MenuItem onClick={() => handleAdd(category)}>{category.name}</MenuItem>
+        return <MenuItem key={category.id} onClick={() => handleAdd(category)}>{category.name}</MenuItem>
     })
 
     const addCategory = (
