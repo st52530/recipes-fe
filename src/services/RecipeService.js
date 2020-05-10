@@ -52,3 +52,11 @@ export async function addRecipe(recipe, image) {
     sessionStorage.setItem(`recipes/${response.data.id}`, JSON.stringify(response.data))
     return response.data
 }
+
+export async function deleteRecipe(id) {
+    const path = `recipes/${id}`
+    setupAuthentication()
+    const response = await axios.delete(path)
+    sessionStorage.removeItem(path)
+    return response
+}
