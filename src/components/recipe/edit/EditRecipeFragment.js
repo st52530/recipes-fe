@@ -7,7 +7,6 @@ import RecipeInstructions from "../detail/RecipeInstructions";
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {getRecipeImageUrl} from "../../../services/RecipeService";
 import {makeStyles} from '@material-ui/core/styles';
 import FaceIcon from '@material-ui/icons/Face';
 import TimerIcon from '@material-ui/icons/Timer';
@@ -29,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, image, setImage, allCategories}) => {
+const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, imageUrl, setImage, allCategories}) => {
     const classes = useStyles()
 
     const author = recipe.author.displayName || recipe.author.username
-    const recipeUrl = image ? URL.createObjectURL(image) : getRecipeImageUrl(recipe.id)
+    const recipeUrl = imageUrl ? imageUrl : recipe.imageUrl
     return (
         <>
             <RecipeDetailHeader
@@ -122,7 +121,7 @@ EditRecipeFragment.propTypes = {
     recipe: PropTypes.object,
     setRecipe: PropTypes.func,
     submitRecipe: PropTypes.func,
-    image: PropTypes.object,
+    imageUrl: PropTypes.string,
     setImage: PropTypes.func,
     allCategories: PropTypes.array
 }

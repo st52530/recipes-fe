@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import RecipeDetailHeader from "./RecipeDetailHeader";
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
-import {getRecipe, getRecipeImageUrl} from "../../../services/RecipeService";
+import {getRecipe} from "../../../services/RecipeService";
 import {makeStyles} from '@material-ui/core/styles';
 import ContentLoadingError from "../../util/ContentLoadingErrror";
 import RecipeInstructions from "./RecipeInstructions";
@@ -54,7 +54,7 @@ const RecipeDetailPage = () => {
                     <>
                         <RecipeDetailHeader
                             name={recipe.name}
-                            imageUrl={getRecipeImageUrl(id)}
+                            imageUrl={recipe.imageUrl}
                             showEditIcons={showEditIcons}/>
                         <Container maxWidth="md" className={classes.root}>
                             <Box display="flex" justifyContent="center" flexWrap="wrap">

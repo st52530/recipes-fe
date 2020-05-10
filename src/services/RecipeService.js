@@ -17,10 +17,6 @@ export async function getRecipe(id) {
     return await getData(`recipes/${id}`)
 }
 
-export function getRecipeImageUrl(id) {
-    return `${process.env.REACT_APP_API_URL}recipes/${id}/image`
-}
-
 export async function addRecipe(recipe, image) {
     const categories = recipe.categories.map((category) => category.id)
     const instructions = recipe.instructions.filter((instruction) => instruction.text || instruction.text !== "")

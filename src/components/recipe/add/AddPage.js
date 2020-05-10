@@ -30,12 +30,19 @@ const AddPage = ({history}) => {
     const [image, setImage] = useState(null)
     const [allCategories, setAllCategories] = useState(null)
     const [error, setError] = useState(null)
+    const [previewImageUrl, setPreviewImageUrl] = useState(null)
     const isLoading = allCategories === null && error === null
 
     useEffect(() => {
         setError(null)
         getAllCategories(setAllCategories, setError)
     }, [])
+
+    // Generate preview URL when image changes.
+    useEffect(() => {
+        const imageUrl = image ? URL.createObjectURL(image) : null
+        setPreviewImageUrl(imageUrl)
+    }, [image])
 
     const onSuccess = (recipe) => {
         history.push(`/recipe/${recipe.id}/${getSlug(recipe.name)}`)
@@ -57,7 +64,7 @@ const AddPage = ({history}) => {
                     recipe={recipe}
                     setRecipe={setRecipe}
                     submitRecipe={() => addNewRecipe(recipe, image, setError, onSuccess)}
-                    image={image}
+                    imageUrl={previewImageUrl}
                     allCategories={allCategories}
                     setImage={setImage}/>
             </ContentLoadingError>
