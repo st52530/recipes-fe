@@ -93,7 +93,8 @@ const RecipeIngredientsList = ({ingredients, editMode = false, onIngredientsChan
                         variant="contained"
                         onClick={() => {
                             onIngredientsChanged([...ingredients, {
-                                    ingredient: selectedIngredient
+                                    ingredient: selectedIngredient,
+                                    amount: ""
                                 }]
                             )
                             setSelectedIngredient(null)

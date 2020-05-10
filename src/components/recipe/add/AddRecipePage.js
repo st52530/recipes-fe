@@ -20,6 +20,7 @@ const AddRecipePage = ({history}) => {
     const currentUser = getCurrentUser()
     const [recipe, setRecipe] = useState({
         name: "",
+        preparationTime: "",
         description: "",
         instructions: [],
         categories: [],

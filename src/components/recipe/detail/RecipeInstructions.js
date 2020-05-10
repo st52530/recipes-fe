@@ -69,7 +69,10 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
                         <StepContent>
                             <Button
                                 variant="contained"
-                                onClick={() => onInstructionsChanged([...instructions, {localId: Math.floor(Math.random() * 1000)}])}
+                                onClick={() => onInstructionsChanged([...instructions, {
+                                    localId: Math.floor(Math.random() * 1000),
+                                    text: ""
+                                }])}
                                 color="primary">
                                 Přidat další
                             </Button>
