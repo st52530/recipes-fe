@@ -8,7 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import placeholder from '../../../images/placeholder.svg';
 import {getSlug} from "../../../util/TextUtil";
-import {getRecipeImageUrl} from "../../../services/RecipeService";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -63,7 +62,7 @@ const RecipeListCard = ({recipe}) => {
     const classes = useStyles()
     const author = recipe.author.displayName || recipe.author.username
     const category = recipe.categories[0].name
-    const imageUrl = getRecipeImageUrl(recipe.id)
+    const imageUrl = recipe.imageUrl ? recipe.imageUrl : placeholder
 
     const slugName = getSlug(recipe.name)
 
