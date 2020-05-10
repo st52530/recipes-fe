@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
 import {register, isLoggedIn} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)'
+    },
+    errorState: {
+        marginTop: theme.spacing(2)
     }
 }));
 
@@ -69,7 +73,6 @@ const RegistrationPage = () => {
                     margin="normal"
                     fullWidth
                     error={error !== null}
-                    helperText={error}
                     id="displayName"
                     label="Celé jméno"
                     name="displayName"
@@ -141,6 +144,7 @@ const RegistrationPage = () => {
                     </Link>
                 </Grid>
             </Grid>
+            {error && <Alert className={classes.errorState} severity="error">{error}</Alert>}
         </Container>
     )
 }
