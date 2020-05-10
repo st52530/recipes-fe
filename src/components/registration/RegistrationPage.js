@@ -9,7 +9,8 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import {login, isLoggedIn} from "../../services/AuthenticationService";
+import Alert from '@material-ui/lab/Alert';
+import {register, isLoggedIn} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -26,15 +27,19 @@ const useStyles = makeStyles((theme) => ({
         left: '50%',
         top: '50%',
         transform: 'translate(-50%, -50%)'
+    },
+    errorState: {
+        marginTop: theme.spacing(2)
     }
 }));
 
-const LoginPage = () => {
+const RegistrationPage = () => {
     const classes = useStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [isLoading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [displayName, setDisplayName] = useState("")
+    const [isLoading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     if (isLoggedIn()) {
         // When logged in - show home.
@@ -48,10 +53,9 @@ const LoginPage = () => {
         setError(null)
 
         try {
-            await login(username, password)
+            await register(username, password, displayName)
         } catch (exception) {
-            console.error(exception)
-            setError("Špatné jméno nebo heslo.")
+            setError("Něco se nepovedlo. Zkuste to znovu a lépe.")
         }
         setLoading(false);
     }
@@ -60,10 +64,25 @@ const LoginPage = () => {
         <Container component="main" maxWidth="xs" className={classes.loginForm}>
 
             <Typography component="h1" variant="h5" className={classes.loginTitle}>
-                Přihlášení
+                Registrace
             </Typography>
 
             <form noValidate onSubmit={doOnSubmit}>
+                <TextField
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    error={error !== null}
+                    id="displayName"
+                    label="Celé jméno"
+                    name="displayName"
+                    value={displayName}
+                    onChange={(e) => {
+                        setError(null)
+                        setDisplayName(e.target.value)
+                    }}
+                    autoFocus/>
+
                 <TextField
                     variant="outlined"
                     margin="normal"
@@ -78,8 +97,7 @@ const LoginPage = () => {
                     onChange={(e) => {
                         setError(null)
                         setUsername(e.target.value)
-                    }}
-                    autoFocus/>
+                    }}/>
 
                 <TextField
                     variant="outlined"
@@ -87,7 +105,7 @@ const LoginPage = () => {
                     required
                     fullWidth
                     error={error !== null}
-                    helperText={error}
+                    helperText="Heslo musí obsahovat alespoň jeden znak."
                     name="password"
                     label="Heslo"
                     type="password"
@@ -107,7 +125,7 @@ const LoginPage = () => {
                             disabled={username === "" || password === ""}
                             variant="contained"
                             color="primary">
-                            Přihlásit
+                            Registrovat
                         </Button>
                     )}
                     {isLoading && <CircularProgress color="primary"/>}
@@ -121,13 +139,14 @@ const LoginPage = () => {
                 className={classes.loginSpacingTop}
                 alignItems="center">
                 <Grid item>
-                    <Link href="/register" variant="body2">
-                        Registrovat
+                    <Link href="/login" variant="body2">
+                        Nebo se chcete přihlásit?
                     </Link>
                 </Grid>
             </Grid>
+            {error && <Alert className={classes.errorState} severity="error">{error}</Alert>}
         </Container>
     )
 }
 
-export default LoginPage
+export default RegistrationPage

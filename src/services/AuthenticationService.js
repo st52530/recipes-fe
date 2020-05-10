@@ -29,7 +29,11 @@ export function getBearerToken() {
 }
 
 export function getCurrentUser() {
-    return JSON.parse(Cookies.get(CURRENT_USER_KEY))
+    const jsonData = Cookies.get(CURRENT_USER_KEY)
+    if (jsonData) {
+        return JSON.parse(jsonData)
+    }
+    return null
 }
 
 export function isLoggedIn() {
@@ -50,4 +54,16 @@ export function logout() {
     sessionStorage.clear()
     Cookies.remove(TOKEN_KEY)
     Cookies.remove(CURRENT_USER_KEY)
+}
+
+export async function register(username, password, displayName) {
+    const dto = {
+        username,
+        password,
+        displayName
+    }
+
+    const response = await axios.post('register', dto)
+    storeAuthData(response.data)
+    return response.data
 }

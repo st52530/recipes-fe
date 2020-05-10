@@ -19,6 +19,7 @@ import SearchPage from "./components/search/SearchPage";
 import RecipeDetailPage from "./components/recipe/detail/RecipeDetailPage";
 import DeleteRecipePage from "./components/recipe/delete/DeleteRecipePage";
 import EditRecipePage from "./components/recipe/edit/EditRecipePage";
+import RegistrationPage from "./components/registration/RegistrationPage";
 
 const useStyles = makeStyles(theme => ({
     toolbarArea: theme.mixins.toolbar,
@@ -64,6 +65,9 @@ const App = () => {
                         <Switch>
                             <Route exact path="/login">
                                 <LoginPage/>
+                            </Route>
+                            <Route exact path="/register">
+                                <RegistrationPage/>
                             </Route>
                             <PrivateRoute exact path="/logout">
                                 <Logout/>
