@@ -90,6 +90,7 @@ async function saveRecipeInternal(recipe, image, setError, onSuccess, setRecipeU
         onSuccess(data)
     } catch (e) {
         setError("Nepodařilo se nahrát změny receptu.\nZkuste to prosím znovu.")
+        setRecipeUploadInProgress(false)
     }
 }
 

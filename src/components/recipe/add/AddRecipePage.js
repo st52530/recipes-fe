@@ -81,6 +81,7 @@ async function addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadI
         onSuccess(data)
     } catch (e) {
         setError("Nepodařilo se nahrát nový recept.\nZkuste to prosím znovu.")
+        setRecipeUploadInProgress(false)
     }
 }
 
