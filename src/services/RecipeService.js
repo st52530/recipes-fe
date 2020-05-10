@@ -53,6 +53,11 @@ export async function addRecipe(recipe, image) {
     return response.data
 }
 
+export async function saveRecipe(recipe, image) {
+    console.log("SAVE!")
+    // TODO!
+}
+
 export async function deleteRecipe(id) {
     const path = `recipes/${id}`
     setupAuthentication()
