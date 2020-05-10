@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+    withRouter
+} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -76,7 +79,18 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false, editMode = false, setName, onFileSelected}) => {
+const RecipeDetailHeader = (
+    {
+        name,
+        imageUrl,
+        showEditIcons = false,
+        editMode = false,
+        setName,
+        onFileSelected,
+        history,
+        location
+    }
+) => {
     const classes = useStyles()
 
     let uploadInput = null
@@ -88,6 +102,14 @@ const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false, editMode = f
     const onFileChanged = (e) => {
         const file = e.target.files[0]
         onFileSelected(file)
+    }
+
+    const onEditClicked = () => {
+        history.push(`${location.pathname}/edit`)
+    }
+
+    const onDeleteClicked = () => {
+        history.push(`${location.pathname}/delete`)
     }
 
     return (
@@ -112,14 +134,14 @@ const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false, editMode = f
                     showEditIcons && (
                         <Box className={classes.editIconsBox}>
                             <Tooltip arrow TransitionComponent={Zoom} title="Upravit">
-                                <ButtonBase className={classes.buttonBase}>
+                                <ButtonBase className={classes.buttonBase} onClick={onEditClicked}>
                                     <Avatar className={classes.editIcons}>
                                         <EditIcon color="white" fontSize="large"/>
                                     </Avatar>
                                 </ButtonBase>
                             </Tooltip>
                             <Tooltip arrow TransitionComponent={Zoom} title="Smazat">
-                                <ButtonBase className={classes.buttonBase}>
+                                <ButtonBase className={classes.buttonBase} onClick={onDeleteClicked}>
                                     <Avatar className={classes.editIcons}>
                                         <DeleteIcon color="white" fontSize="large"/>
                                     </Avatar>
@@ -153,7 +175,7 @@ const RecipeDetailHeader = ({name, imageUrl, showEditIcons = false, editMode = f
     )
 }
 
-export default RecipeDetailHeader
+export default withRouter(RecipeDetailHeader)
 
 RecipeListCard.propTypes = {
     name: PropTypes.string,
