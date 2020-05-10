@@ -15,6 +15,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles, useTheme} from '@material-ui/core/styles';
 import {ReactComponent as Logo} from '../../images/logo.svg';
+import {getCurrentUser} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -81,7 +82,8 @@ const NavBar = ({location, history}) => {
         setMobileOpen(!mobileOpen)
     }
 
-    if (location.pathname === '/login') {
+    const currentUser = getCurrentUser()
+    if (currentUser === null) {
         return null
     }
 

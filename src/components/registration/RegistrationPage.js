@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import {login, isLoggedIn} from "../../services/AuthenticationService";
+import {register, login, isLoggedIn} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const LoginPage = () => {
+const RegistrationPage = () => {
     const classes = useStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -60,7 +60,7 @@ const LoginPage = () => {
         <Container component="main" maxWidth="xs" className={classes.loginForm}>
 
             <Typography component="h1" variant="h5" className={classes.loginTitle}>
-                Přihlášení
+                Registrace
             </Typography>
 
             <form noValidate onSubmit={doOnSubmit}>
@@ -107,7 +107,7 @@ const LoginPage = () => {
                             disabled={username === "" || password === ""}
                             variant="contained"
                             color="primary">
-                            Přihlásit
+                            Registrovat
                         </Button>
                     )}
                     {isLoading && <CircularProgress color="primary"/>}
@@ -121,8 +121,8 @@ const LoginPage = () => {
                 className={classes.loginSpacingTop}
                 alignItems="center">
                 <Grid item>
-                    <Link href="/register" variant="body2">
-                        Registrovat
+                    <Link href="/login" variant="body2">
+                        Nebo se chcete přihlásit?
                     </Link>
                 </Grid>
             </Grid>
@@ -130,4 +130,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage
+export default RegistrationPage

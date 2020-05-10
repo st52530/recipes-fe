@@ -29,7 +29,11 @@ export function getBearerToken() {
 }
 
 export function getCurrentUser() {
-    return JSON.parse(Cookies.get(CURRENT_USER_KEY))
+    const jsonData = Cookies.get(CURRENT_USER_KEY)
+    if (jsonData) {
+        return JSON.parse(jsonData)
+    }
+    return null
 }
 
 export function isLoggedIn() {
