@@ -43,7 +43,6 @@ const RecipeCategories = ({categories, editMode = false, onCategoriesChanged, al
         return <MenuItem onClick={() => handleAdd(category)}>{category.name}</MenuItem>
     })
 
-    // TODO: Add!
     const addCategory = (
         <li key={-1}>
             <Chip

@@ -64,7 +64,6 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
             <Stepper orientation="vertical" className={classes.stepper}>
                 {instructionsUi}
                 {editMode && (
-
                     <Step key={-1} active>
                         <StepLabel>Další krok</StepLabel>
                         <StepContent>

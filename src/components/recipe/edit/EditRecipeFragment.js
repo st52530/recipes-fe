@@ -101,7 +101,6 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, imageUrl, setImage
                     instructions={recipe.instructions}
                     onInstructionsChanged={(instructions) => setRecipe({...recipe, instructions})}/>
 
-
                 <Button
                     fullWidth
                     disabled={!isRecipeValid(recipe)}

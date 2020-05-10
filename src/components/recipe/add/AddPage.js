@@ -9,7 +9,6 @@ import {getCategories} from "../../../services/CategoryService";
 import {getSlug} from "../../../util/TextUtil";
 import {addRecipe} from "../../../services/RecipeService";
 
-
 const useStyles = makeStyles((theme) => ({
     headline: {
         marginBottom: theme.spacing(2)
@@ -31,7 +30,8 @@ const AddPage = ({history}) => {
     const [allCategories, setAllCategories] = useState(null)
     const [error, setError] = useState(null)
     const [previewImageUrl, setPreviewImageUrl] = useState(null)
-    const isLoading = allCategories === null && error === null
+    const [recipeUploadInProgress, setRecipeUploadInProgress] = useState(false)
+    const isLoading = (allCategories === null && error === null) || recipeUploadInProgress
 
     useEffect(() => {
         setError(null)
@@ -52,7 +52,7 @@ const AddPage = ({history}) => {
         if (allCategories == null) {
             getAllCategories(setAllCategories, setError)
         } else {
-            addNewRecipe(recipe, image, setError, onSuccess)
+            addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadInProgress)
         }
     }
 
@@ -63,7 +63,7 @@ const AddPage = ({history}) => {
                 <EditRecipeFragment
                     recipe={recipe}
                     setRecipe={setRecipe}
-                    submitRecipe={() => addNewRecipe(recipe, image, setError, onSuccess)}
+                    submitRecipe={() => addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadInProgress)}
                     imageUrl={previewImageUrl}
                     allCategories={allCategories}
                     setImage={setImage}/>
@@ -74,8 +74,9 @@ const AddPage = ({history}) => {
 
 export default withRouter(AddPage)
 
-async function addNewRecipe(recipe, image, setError, onSuccess) {
+async function addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadInProgress) {
     try {
+        setRecipeUploadInProgress(true)
         const data = await addRecipe(recipe, image)
         onSuccess(data)
     } catch (e) {
