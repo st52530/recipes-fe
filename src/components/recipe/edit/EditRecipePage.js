@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 const EditRecipePage = () => {
     return <b>Edit recipe!</b>
