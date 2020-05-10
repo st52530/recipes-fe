@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const AddPage = ({history}) => {
+const AddRecipePage = ({history}) => {
     const classes = useStyles()
     const currentUser = getCurrentUser()
     const [recipe, setRecipe] = useState({
@@ -72,7 +72,7 @@ const AddPage = ({history}) => {
     )
 }
 
-export default withRouter(AddPage)
+export default withRouter(AddRecipePage)
 
 async function addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadInProgress) {
     try {
@@ -81,6 +81,7 @@ async function addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadI
         onSuccess(data)
     } catch (e) {
         setError("Nepodařilo se nahrát nový recept.\nZkuste to prosím znovu.")
+        setRecipeUploadInProgress(false)
     }
 }
 
