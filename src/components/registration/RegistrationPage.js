@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {makeStyles} from '@material-ui/core/styles';
-import {register, login, isLoggedIn} from "../../services/AuthenticationService";
+import {register, isLoggedIn} from "../../services/AuthenticationService";
 
 const useStyles = makeStyles((theme) => ({
     loginTitle: {
@@ -33,8 +33,9 @@ const RegistrationPage = () => {
     const classes = useStyles();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [isLoading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+    const [displayName, setDisplayName] = useState("")
+    const [isLoading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
     if (isLoggedIn()) {
         // When logged in - show home.
@@ -48,10 +49,9 @@ const RegistrationPage = () => {
         setError(null)
 
         try {
-            await login(username, password)
+            await register(username, password, displayName)
         } catch (exception) {
-            console.error(exception)
-            setError("Špatné jméno nebo heslo.")
+            setError("Něco se nepovedlo. Zkuste to znovu a lépe.")
         }
         setLoading(false);
     }
@@ -67,6 +67,22 @@ const RegistrationPage = () => {
                 <TextField
                     variant="outlined"
                     margin="normal"
+                    fullWidth
+                    error={error !== null}
+                    helperText={error}
+                    id="displayName"
+                    label="Celé jméno"
+                    name="displayName"
+                    value={displayName}
+                    onChange={(e) => {
+                        setError(null)
+                        setDisplayName(e.target.value)
+                    }}
+                    autoFocus/>
+
+                <TextField
+                    variant="outlined"
+                    margin="normal"
                     required
                     fullWidth
                     error={error !== null}
@@ -78,8 +94,7 @@ const RegistrationPage = () => {
                     onChange={(e) => {
                         setError(null)
                         setUsername(e.target.value)
-                    }}
-                    autoFocus/>
+                    }}/>
 
                 <TextField
                     variant="outlined"
@@ -87,7 +102,7 @@ const RegistrationPage = () => {
                     required
                     fullWidth
                     error={error !== null}
-                    helperText={error}
+                    helperText="Heslo musí obsahovat alespoň jeden znak."
                     name="password"
                     label="Heslo"
                     type="password"

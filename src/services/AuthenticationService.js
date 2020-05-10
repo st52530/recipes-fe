@@ -55,3 +55,15 @@ export function logout() {
     Cookies.remove(TOKEN_KEY)
     Cookies.remove(CURRENT_USER_KEY)
 }
+
+export async function register(username, password, displayName) {
+    const dto = {
+        username,
+        password,
+        displayName
+    }
+
+    const response = await axios.post('register', dto)
+    storeAuthData(response.data)
+    return response.data
+}
