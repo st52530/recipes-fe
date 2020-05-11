@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {Redirect} from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Redirect, Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import LinkUi from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
@@ -40,6 +40,10 @@ const RegistrationPage = () => {
     const [displayName, setDisplayName] = useState("")
     const [isLoading, setLoading] = useState(false)
     const [error, setError] = useState(null)
+
+    useEffect(() => {
+        document.title = "Registrace | Rodinné recepty"
+    })
 
     if (isLoggedIn()) {
         // When logged in - show home.
@@ -139,9 +143,9 @@ const RegistrationPage = () => {
                 className={classes.loginSpacingTop}
                 alignItems="center">
                 <Grid item>
-                    <Link href="/login" variant="body2">
+                    <LinkUi component={Link} to="/login" variant="body2">
                         Nebo se chcete přihlásit?
-                    </Link>
+                    </LinkUi>
                 </Grid>
             </Grid>
             {error && <Alert className={classes.errorState} severity="error">{error}</Alert>}

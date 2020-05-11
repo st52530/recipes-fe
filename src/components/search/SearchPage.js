@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -22,6 +22,10 @@ const SearchPage = () => {
     const [recipes, setRecipes] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading, setLoading] = useState(false)
+
+    useEffect(() => {
+        document.title = "Vyhledávání | Rodinné recepty"
+    })
 
     const doSearch = (e) => {
         e.preventDefault()

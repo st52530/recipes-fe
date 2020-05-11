@@ -39,6 +39,14 @@ const RecipeDetailPage = () => {
     const isLoading = recipe === null && error === null
 
     useEffect(() => {
+        let title = "Detail receptu";
+        if (recipe !== null) {
+            title = recipe.name
+        }
+        document.title = `${title} | Rodinné recepty`
+    }, [recipe])
+
+    useEffect(() => {
         setRecipe(null)
         fetchRecipe(id, setRecipe, setError)
     }, [id])
