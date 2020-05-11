@@ -44,7 +44,7 @@ const RecipeCategories = ({categories, editMode = false, onCategoriesChanged, al
     })
 
     const addCategory = (
-        <li key={-1}>
+        <li key="add-category">
             <Chip
                 variant="outlined"
                 color="primary"
