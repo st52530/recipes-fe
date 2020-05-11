@@ -53,6 +53,10 @@ const HomePage = () => {
     const isLoading = recipes === null && error === null
 
     useEffect(() => {
+        document.title = "Seznam receptů | Rodinné recepty"
+    })
+
+    useEffect(() => {
         setCurrentPage(1)
     }, [orderBy])
 

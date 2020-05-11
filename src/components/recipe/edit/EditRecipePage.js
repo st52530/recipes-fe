@@ -27,6 +27,14 @@ const EditRecipePage = ({history}) => {
     const isLoading = (allCategories === null && error === null) || (recipe === null && error === null) || recipeUploadInProgress
 
     useEffect(() => {
+        let title = "Změna receptu";
+        if (recipe !== null) {
+            title += ` - ${recipe.name}`
+        }
+        document.title = `${title} | Rodinné recepty`
+    }, [recipe])
+
+    useEffect(() => {
         setError(null)
         getAllCategories(setAllCategories, setError)
         fetchRecipe(id, setRecipe, setError)

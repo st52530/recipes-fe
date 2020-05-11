@@ -35,6 +35,10 @@ const AddRecipePage = ({history}) => {
     const isLoading = (allCategories === null && error === null) || recipeUploadInProgress
 
     useEffect(() => {
+        document.title = "Přidání receptu | Rodinné recepty"
+    })
+
+    useEffect(() => {
         setError(null)
         getAllCategories(setAllCategories, setError)
     }, [])
