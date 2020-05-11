@@ -39,7 +39,6 @@ const AddRecipePage = ({history}) => {
     })
 
     useEffect(() => {
-        setError(null)
         getAllCategories(setAllCategories, setError)
     }, [])
 
@@ -91,6 +90,7 @@ async function addNewRecipe(recipe, image, setError, onSuccess, setRecipeUploadI
 }
 
 async function getAllCategories(setAllCategories, setError) {
+    setError(null)
     try {
         const categories = await getCategories()
         setAllCategories(categories)
