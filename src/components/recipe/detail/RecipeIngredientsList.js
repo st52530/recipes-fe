@@ -56,6 +56,7 @@ const RecipeIngredientsList = ({ingredients, editMode = false, onIngredientsChan
                                             variant="outlined"
                                             margin="normal"
                                             required
+                                            name="amount"
                                             label="Množství"
                                             value={data.amount}
                                             onChange={(e) => {

@@ -157,6 +157,7 @@ const RecipeDetailHeader = (
                         variant="outlined"
                         margin="normal"
                         required
+                        name="recipeName"
                         label="Název receptu"
                         fullWidth
                         value={name}

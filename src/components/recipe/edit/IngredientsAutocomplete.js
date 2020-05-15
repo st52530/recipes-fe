@@ -56,6 +56,7 @@ const IngredientAutocomplete = ({alreadyUsedIds, setSelected}) => {
                     {...params}
                     label="Ingredience"
                     variant="outlined"
+                    name="ingredient"
                     InputProps={{
                         ...params.InputProps,
                         endAdornment: (

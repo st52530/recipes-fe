@@ -40,6 +40,7 @@ const RecipeInstructions = ({instructions, editMode = false, onInstructionsChang
                             variant="outlined"
                             margin="normal"
                             required
+                            name="instruction"
                             label="Instrukce"
                             fullWidth
                             value={instruction.text}

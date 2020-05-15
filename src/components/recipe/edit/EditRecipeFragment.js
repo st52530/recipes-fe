@@ -52,6 +52,7 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, imageUrl, setImage
                             <TextField
                                 variant="outlined"
                                 margin="normal"
+                                name="preparationTime"
                                 required
                                 label="Doba přípravy"
                                 value={recipe.preparationTime}
@@ -83,6 +84,7 @@ const EditRecipeFragment = ({recipe, setRecipe, submitRecipe, imageUrl, setImage
                     margin="normal"
                     required
                     multiline
+                    name="description"
                     label="Popis receptu"
                     fullWidth
                     value={recipe.description}
