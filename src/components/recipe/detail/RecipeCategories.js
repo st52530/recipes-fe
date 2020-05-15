@@ -48,6 +48,7 @@ const RecipeCategories = ({categories, editMode = false, onCategoriesChanged, al
             <Chip
                 variant="outlined"
                 color="primary"
+                id="add-category"
                 label="Přidat kategorii"
                 onClick={(e) => setAnchorElement(e.currentTarget)}
                 onDelete={(e) => setAnchorElement(e.currentTarget)}
