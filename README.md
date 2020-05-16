@@ -51,7 +51,7 @@ Před spuštěním projektu je potřeba nainstalovat potřebné závislosti pomo
 Pokud chcete změnit adresu využitého API, vytvořte soubor `.env.local` v rootu projektu.
 Následuje příklad lokální konfigurace.
 
-```.env
+```dotenv
 REACT_APP_API_URL="http://localhost:8080/api/"
 ```
 
