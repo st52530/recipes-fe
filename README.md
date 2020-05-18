@@ -25,7 +25,7 @@ Frontend byl vyvinut v JavaScriptu pomocí knihovny [ReactJS](https://reactjs.or
 Pro navigaci mezi různými stránkami (komponentami) byla využita knihovna [React-router](https://www.npmjs.com/package/react-router-dom).
 
 Pro design projektu byla využita knihovna [Material UI](https://material-ui.com/). Pro psaní CSS stylů bylo využito možnosti této knihovny psát styly
-přímo v Javascriptu a využívat globálního stylu UI.
+přímo v Javascriptu a využívat globálního stylu UI. Web je plně responzivní.
 
 Pro komunikaci s API byla využita knihovna [axios](https://www.npmjs.com/package/axios). Ta nebyla volána přímo z komponent, ale z tzv.
 "Service" - i když se v JS nejednalo o skutečné třídy, ale spíš seskupení funkcí pro práci s danou entitou. Větěina API odpovědí
